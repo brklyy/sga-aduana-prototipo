@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGA – Estadísticas</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .chart-bar-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      height: 180px;
+      padding: 1rem 0 0;
+      border-bottom: 2px solid var(--gris-borde);
+    }
+    .chart-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      height: 100%;
+      justify-content: flex-end;
+    }
+    .chart-bar {
+      width: 100%;
+      border-radius: 4px 4px 0 0;
+      background: var(--azul-aduana);
+      transition: opacity 0.2s;
+    }
+    .chart-bar:hover { opacity: 0.75; }
+    .chart-label {
+      font-size: 0.72rem;
+      color: #888;
+      text-align: center;
+    }
+    .chart-val {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--azul-aduana);
+    }
+    .donut-wrap {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .donut {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--verde) 0% 62%,
+        var(--naranja) 62% 80%,
+        var(--rojo) 80% 95%,
+        #ccc 95% 100%
+      );
+      flex-shrink: 0;
+      position: relative;
+    }
+    .donut::after {
+      content: '';
+      position: absolute;
+      inset: 25px;
+      background: white;
+      border-radius: 50%;
+    }
+    .legend { display: flex; flex-direction: column; gap: 8px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; }
+    .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="dashboard.html" class="navbar-brand">
+    <span style="font-size:1.8rem;">🛃</span>
+    <div>
+      <span class="brand-text">Servicio Nacional de Aduanas</span>
+      <span class="brand-sub">Sistema de Gestión Aduanera (SGA) v2.1</span>
+    </div>
+  </a>
+  <div class="navbar-right">
+    <div class="navbar-user">
+      <div class="avatar">JM</div>
+      <div>
+        <div style="font-size:0.85rem; font-weight:600;">Juan Martínez</div>
+        <div style="font-size:0.72rem; opacity:0.75;">Supervisor</div>
+      </div>
+    </div>
+    <a href="../index.html" class="btn-logout">Cerrar sesión</a>
+  </div>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-section">Módulos</div>
+    <a href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+    <a href="menores.html"><span class="icon">👶</span> Registro Menores</a>
+    <a href="vehiculos.html"><span class="icon">🚗</span> Vehículos</a>
+    <a href="sag_pdi.html"><span class="icon">🌿</span> Revisión SAG/PDI</a>
+    <a href="integracion.html"><span class="icon">🔗</span> Integración Países</a>
+    <div class="sidebar-section">Reportes</div>
+    <a href="estadisticas.html" class="active"><span class="icon">📈</span> Estadísticas</a>
+    <a href="reportes.html"><span class="icon">📄</span> Generar Reportes</a>
+    <div class="sidebar-section">Sistema</div>
+    <a href="usuarios.html"><span class="icon">👤</span> Usuarios</a>
+    <a href="../index.html"><span class="icon">🚪</span> Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+    <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Estadísticas</div>
+    <div class="page-header">
+      <h1>📈 Estadísticas e Informes</h1>
+      <p>Métricas de flujo y operación del paso fronterizo Los Libertadores</p>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="card" style="padding:1rem 1.5rem;">
+      <div style="display:flex; gap:1rem; align-items:flex-end; flex-wrap:wrap;">
+        <div class="form-group" style="flex:1; min-width:120px;">
+          <label>Período</label>
+          <select>
+            <option>Hoy</option>
+            <option selected>Esta semana</option>
+            <option>Este mes</option>
+            <option>Rango personalizado</option>
+          </select>
+        </div>
+        <div class="form-group" style="flex:1; min-width:120px;">
+          <label>Tipo de flujo</label>
+          <select>
+            <option selected>Todos</option>
+            <option>Personas</option>
+            <option>Vehículos</option>
+            <option>SAG</option>
+          </select>
+        </div>
+        <div class="form-group" style="flex:1; min-width:120px;">
+          <label>Sentido</label>
+          <select>
+            <option selected>Ambos sentidos</option>
+            <option>Chile → Argentina</option>
+            <option>Argentina → Chile</option>
+          </select>
+        </div>
+        <button class="btn btn-primary">Aplicar filtros</button>
+      </div>
+    </div>
+
+    <!-- STATS SEMANA -->
+    <div class="stats-grid">
+      <div class="stat-card azul">
+        <div class="stat-label">Personas esta semana</div>
+        <div class="stat-value">12.480</div>
+        <div class="stat-sub">↑ 23% vs semana anterior</div>
+      </div>
+      <div class="stat-card verde">
+        <div class="stat-label">Vehículos esta semana</div>
+        <div class="stat-value">4.210</div>
+        <div class="stat-sub">Promedio 601/día</div>
+      </div>
+      <div class="stat-card naranja">
+        <div class="stat-label">Tiempo espera promedio</div>
+        <div class="stat-value">1h 42m</div>
+        <div class="stat-sub">↓ Reducción del 68% vs sin sistema</div>
+      </div>
+      <div class="stat-card rojo">
+        <div class="stat-label">Incidencias registradas</div>
+        <div class="stat-value">38</div>
+        <div class="stat-sub">Documentación incompleta</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 2fr 1fr; gap:1.5rem;">
+      <!-- GRÁFICO BARRAS -->
+      <div class="card">
+        <div class="card-title">📊 Flujo diario de personas (última semana)</div>
+        <div class="chart-bar-wrap">
+          <div class="chart-col">
+            <div class="chart-val">1.820</div>
+            <div class="chart-bar" style="height:70%; background:#005a9e;"></div>
+            <div class="chart-label">Lun</div>
+          </div>
+          <div class="chart-col">
+            <div class="chart-val">2.100</div>
+            <div class="chart-bar" style="height:80%;"></div>
+            <div class="chart-label">Mar</div>
+          </div>
+          <div class="chart-col">
+            <div class="chart-val">1.950</div>
+            <div class="chart-bar" style="height:75%;"></div>
+            <div class="chart-label">Mié</div>
+          </div>
+          <div class="chart-col">
+            <div class="chart-val">1.680</div>
+            <div class="chart-bar" style="height:65%;"></div>
+            <div class="chart-label">Jue</div>
+          </div>
+          <div class="chart-col">
+            <div class="chart-val">2.450</div>
+            <div class="chart-bar" style="height:94%; background: #003366;"></div>
+            <div class="chart-label">Vie</div>
+          </div>
+          <div class="chart-col">
+            <div class="chart-val">1.630</div>
+            <div class="chart-bar" style="height:62%; background:#005a9e;"></div>
+            <div class="chart-label">Sáb</div>
+          </div>
+          <div class="chart-col">
+            <div class="chart-val">850</div>
+            <div class="chart-bar" style="height:33%; background:#7ba7cc;"></div>
+            <div class="chart-label">Dom</div>
+          </div>
+        </div>
+        <p style="font-size:0.75rem; color:#aaa; margin-top:8px; text-align:center;">Personas procesadas por día</p>
+      </div>
+
+      <!-- DONUT -->
+      <div class="card">
+        <div class="card-title">📊 Resultado de trámites</div>
+        <div class="donut-wrap">
+          <div class="donut"></div>
+          <div class="legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--verde);"></div>
+              <span>Aprobados <strong>62%</strong></span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--naranja);"></div>
+              <span>Pendientes <strong>18%</strong></span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--rojo);"></div>
+              <span>Rechazados <strong>15%</strong></span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#ccc;"></div>
+              <span>Otros <strong>5%</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLA TOP INCIDENCIAS -->
+    <div class="card">
+      <div class="card-title">⚠️ Top causas de rechazo / demora</div>
+      <table>
+        <thead>
+          <tr><th>Causa</th><th>N° casos</th><th>% del total</th><th>Tendencia</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Documentación incompleta</td><td>18</td><td>47%</td><td>↓ Mejorando</td></tr>
+          <tr><td>Documentos vencidos</td><td>9</td><td>24%</td><td>→ Estable</td></tr>
+          <tr><td>Productos SAG sin declarar</td><td>6</td><td>16%</td><td>↑ Aumentando</td></tr>
+          <tr><td>Alertas PDI</td><td>3</td><td>8%</td><td>→ Estable</td></tr>
+          <tr><td>Otros</td><td>2</td><td>5%</td><td>→ Estable</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="form-actions">
+      <a href="reportes.html" class="btn btn-primary">📄 Exportar como reporte</a>
+    </div>
+  </main>
+</div>
+
+<script src="../js/nav.js"></script>
+</body>
+</html>

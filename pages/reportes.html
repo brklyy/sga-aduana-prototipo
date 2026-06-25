@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGA – Generar Reportes</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="dashboard.html" class="navbar-brand">
+    <span style="font-size:1.8rem;">🛃</span>
+    <div>
+      <span class="brand-text">Servicio Nacional de Aduanas</span>
+      <span class="brand-sub">Sistema de Gestión Aduanera (SGA) v2.1</span>
+    </div>
+  </a>
+  <div class="navbar-right">
+    <div class="navbar-user">
+      <div class="avatar">JM</div>
+      <div>
+        <div style="font-size:0.85rem; font-weight:600;">Juan Martínez</div>
+        <div style="font-size:0.72rem; opacity:0.75;">Supervisor</div>
+      </div>
+    </div>
+    <a href="../index.html" class="btn-logout">Cerrar sesión</a>
+  </div>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-section">Módulos</div>
+    <a href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+    <a href="menores.html"><span class="icon">👶</span> Registro Menores</a>
+    <a href="vehiculos.html"><span class="icon">🚗</span> Vehículos</a>
+    <a href="sag_pdi.html"><span class="icon">🌿</span> Revisión SAG/PDI</a>
+    <a href="integracion.html"><span class="icon">🔗</span> Integración Países</a>
+    <div class="sidebar-section">Reportes</div>
+    <a href="estadisticas.html"><span class="icon">📈</span> Estadísticas</a>
+    <a href="reportes.html" class="active"><span class="icon">📄</span> Generar Reportes</a>
+    <div class="sidebar-section">Sistema</div>
+    <a href="usuarios.html"><span class="icon">👤</span> Usuarios</a>
+    <a href="../index.html"><span class="icon">🚪</span> Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+    <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Generar Reportes</div>
+    <div class="page-header">
+      <h1>📄 Generación de Reportes</h1>
+      <p>Exporta informes estadísticos de ingresos y egresos en formato PDF o Excel</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">⚙️ Configurar reporte</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Tipo de reporte</label>
+          <select>
+            <option>Flujo de personas (entrada/salida)</option>
+            <option>Registro de vehículos</option>
+            <option>Incidencias SAG</option>
+            <option>Alertas PDI</option>
+            <option>Reporte consolidado general</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Formato de exportación</label>
+          <select>
+            <option>PDF</option>
+            <option>Excel (.xlsx)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Fecha inicio</label>
+          <input type="date" value="2026-06-01" />
+        </div>
+        <div class="form-group">
+          <label>Fecha término</label>
+          <input type="date" value="2026-06-25" />
+        </div>
+        <div class="form-group">
+          <label>Sentido del cruce</label>
+          <select>
+            <option>Ambos sentidos</option>
+            <option>Chile → Argentina</option>
+            <option>Argentina → Chile</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nivel de detalle</label>
+          <select>
+            <option>Resumen ejecutivo</option>
+            <option selected>Detallado por día</option>
+            <option>Por funcionario</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Incluir secciones</label>
+          <div style="display:flex; gap:1.5rem; margin-top:4px; flex-wrap:wrap;">
+            <label style="font-weight:400; display:flex; align-items:center; gap:6px;"><input type="checkbox" checked /> Gráficos estadísticos</label>
+            <label style="font-weight:400; display:flex; align-items:center; gap:6px;"><input type="checkbox" checked /> Tabla de incidencias</label>
+            <label style="font-weight:400; display:flex; align-items:center; gap:6px;"><input type="checkbox" checked /> Firma del supervisor</label>
+            <label style="font-weight:400; display:flex; align-items:center; gap:6px;"><input type="checkbox" /> Datos personales de pasajeros</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-secondary">Vista previa</button>
+        <button class="btn btn-primary" onclick="toggleModal('modalReporte')">📄 Generar reporte</button>
+      </div>
+    </div>
+
+    <!-- HISTORIAL -->
+    <div class="card">
+      <div class="card-title">🕐 Reportes generados recientemente</div>
+      <table>
+        <thead>
+          <tr><th>Fecha generación</th><th>Tipo</th><th>Período</th><th>Formato</th><th>Generado por</th><th>Acción</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>25/06/2026 08:00</td>
+            <td>Consolidado general</td>
+            <td>Jun 2026</td>
+            <td><span class="badge badge-rojo">PDF</span></td>
+            <td>J. Martínez</td>
+            <td><button class="btn btn-secondary btn-sm">⬇ Descargar</button></td>
+          </tr>
+          <tr>
+            <td>24/06/2026 17:30</td>
+            <td>Flujo de personas</td>
+            <td>Semana 25</td>
+            <td><span class="badge badge-verde">Excel</span></td>
+            <td>C. Soto</td>
+            <td><button class="btn btn-secondary btn-sm">⬇ Descargar</button></td>
+          </tr>
+          <tr>
+            <td>23/06/2026 12:15</td>
+            <td>Incidencias SAG</td>
+            <td>23/06/2026</td>
+            <td><span class="badge badge-rojo">PDF</span></td>
+            <td>K. Reyes</td>
+            <td><button class="btn btn-secondary btn-sm">⬇ Descargar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL GENERANDO REPORTE -->
+<div class="modal-overlay" id="modalReporte">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">📄 Reporte generado exitosamente</div>
+      <button class="modal-close" onclick="toggleModal('modalReporte')">✕</button>
+    </div>
+    <div class="alert alert-success">
+      ✓ El reporte <strong>"Reporte Consolidado General – Junio 2026"</strong> se ha generado correctamente.
+    </div>
+    <p style="font-size:0.88rem; color:#555; margin:1rem 0;">
+      El archivo está listo para descarga. También puede compartirlo directamente por correo institucional.
+    </p>
+    <div class="form-actions">
+      <button class="btn btn-secondary" onclick="toggleModal('modalReporte')">Cerrar</button>
+      <button class="btn btn-primary">📧 Enviar por correo</button>
+      <button class="btn btn-success">⬇ Descargar PDF</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/nav.js"></script>
+</body>
+</html>

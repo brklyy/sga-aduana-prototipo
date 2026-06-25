@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGA – Registro de Menores</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="dashboard.html" class="navbar-brand">
+    <span style="font-size:1.8rem;">🛃</span>
+    <div>
+      <span class="brand-text">Servicio Nacional de Aduanas</span>
+      <span class="brand-sub">Sistema de Gestión Aduanera (SGA) v2.1</span>
+    </div>
+  </a>
+  <div class="navbar-right">
+    <div class="navbar-user">
+      <div class="avatar">JM</div>
+      <div>
+        <div style="font-size:0.85rem; font-weight:600;">Juan Martínez</div>
+        <div style="font-size:0.72rem; opacity:0.75;">Funcionario Aduanero</div>
+      </div>
+    </div>
+    <a href="../index.html" class="btn-logout">Cerrar sesión</a>
+  </div>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-section">Módulos</div>
+    <a href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+    <a href="menores.html" class="active"><span class="icon">👶</span> Registro Menores</a>
+    <a href="vehiculos.html"><span class="icon">🚗</span> Vehículos</a>
+    <a href="sag_pdi.html"><span class="icon">🌿</span> Revisión SAG/PDI</a>
+    <a href="integracion.html"><span class="icon">🔗</span> Integración Países</a>
+    <div class="sidebar-section">Reportes</div>
+    <a href="estadisticas.html"><span class="icon">📈</span> Estadísticas</a>
+    <a href="reportes.html"><span class="icon">📄</span> Generar Reportes</a>
+    <div class="sidebar-section">Sistema</div>
+    <a href="usuarios.html"><span class="icon">👤</span> Usuarios</a>
+    <a href="../index.html"><span class="icon">🚪</span> Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+    <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Registro de Menores de Edad</div>
+    <div class="page-header">
+      <h1>👶 Registro de Menores de Edad</h1>
+      <p>Verificación y registro de documentación para menores que cruzan la frontera</p>
+    </div>
+
+    <div class="alert alert-info">
+      ℹ️ Los menores de 18 años deben portar cédula de identidad o pasaporte vigente + autorización notarial cuando viajan sin ambos padres.
+    </div>
+
+    <!-- STEPS -->
+    <div class="steps">
+      <div class="step done">
+        <div class="step-circle">✓</div>
+        <div class="step-label">Identificación</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step active">
+        <div class="step-circle">2</div>
+        <div class="step-label">Documentación</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="step-circle">3</div>
+        <div class="step-label">Acompañantes</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="step-circle">4</div>
+        <div class="step-label">Confirmación</div>
+      </div>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="card">
+      <div class="card-title">📋 Datos del menor</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" placeholder="Nombre(s) y apellidos" value="Sofía Andrea" />
+        </div>
+        <div class="form-group">
+          <label>Apellidos</label>
+          <input type="text" placeholder="Apellido paterno y materno" value="González Ramos" />
+        </div>
+        <div class="form-group">
+          <label>Tipo de documento</label>
+          <select>
+            <option>Cédula de identidad chilena</option>
+            <option>Pasaporte chileno</option>
+            <option>Pasaporte extranjero</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>N° de documento</label>
+          <input type="text" placeholder="Número de documento" value="22.456.789-3" />
+        </div>
+        <div class="form-group">
+          <label>Fecha de nacimiento</label>
+          <input type="date" value="2015-03-12" />
+        </div>
+        <div class="form-group">
+          <label>Edad</label>
+          <input type="text" value="11 años" readonly style="background:#f0f0f0;" />
+        </div>
+        <div class="form-group">
+          <label>Nacionalidad</label>
+          <select>
+            <option selected>Chilena</option>
+            <option>Argentina</option>
+            <option>Otra</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Dirección de destino</label>
+          <input type="text" placeholder="Ciudad de destino" value="Mendoza, Argentina" />
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📄 Documentación requerida</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>¿Viaja con ambos padres?</label>
+          <select id="ambosPadres" onchange="verificarAutorizacion()">
+            <option value="no">No</option>
+            <option value="si">Sí</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>¿Viaja con un solo padre?</label>
+          <select>
+            <option value="madre">Sí, con la madre</option>
+            <option value="padre">Sí, con el padre</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>N° de escritura autorización notarial</label>
+          <input type="text" placeholder="N° escritura" value="2024-AUT-00847" />
+        </div>
+        <div class="form-group">
+          <label>Fecha de la autorización notarial</label>
+          <input type="date" value="2026-06-20" />
+        </div>
+        <div class="form-group full">
+          <label>Notaría de origen</label>
+          <input type="text" placeholder="Nombre de la notaría" value="Notaría Juan Pérez – Santiago Centro" />
+        </div>
+      </div>
+
+      <div id="alerta-autorizacion" class="alert alert-warning" style="margin-top:1rem;">
+        ⚠️ El menor viaja sin ambos padres. <strong>Se requiere autorización notarial obligatoria.</strong>
+        Verificar vigencia y autenticidad del documento.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">✅ Verificación de documentos</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Documento</th>
+            <th>Estado</th>
+            <th>Observación</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cédula de identidad / Pasaporte</td>
+            <td><span class="badge badge-verde">Vigente</span></td>
+            <td>Vence 2029-05-12</td>
+            <td><button class="btn btn-secondary btn-sm">Ver</button></td>
+          </tr>
+          <tr>
+            <td>Autorización notarial</td>
+            <td><span class="badge badge-verde">Verificada</span></td>
+            <td>N° 2024-AUT-00847, vigente</td>
+            <td><button class="btn btn-secondary btn-sm">Ver</button></td>
+          </tr>
+          <tr>
+            <td>Documento padre/madre ausente</td>
+            <td><span class="badge badge-amarillo">Pendiente</span></td>
+            <td>Adjuntar cédula del padre</td>
+            <td><button class="btn btn-primary btn-sm">Subir</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="form-actions">
+      <a href="dashboard.html" class="btn btn-secondary">Cancelar</a>
+      <button class="btn btn-primary" onclick="toggleModal('modalConfirmacion')">✅ Registrar y aprobar</button>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL CONFIRMACIÓN -->
+<div class="modal-overlay" id="modalConfirmacion">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">✅ Confirmar registro</div>
+      <button class="modal-close" onclick="toggleModal('modalConfirmacion')">✕</button>
+    </div>
+    <p style="margin-bottom:1rem; font-size:0.9rem; color:#555;">
+      ¿Confirma el registro y aprobación del paso fronterizo para el menor <strong>Sofía Andrea González Ramos</strong>?
+    </p>
+    <div class="alert alert-success">
+      ✓ Todos los documentos obligatorios han sido verificados correctamente.
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-secondary" onclick="toggleModal('modalConfirmacion')">Cancelar</button>
+      <a href="dashboard.html" class="btn btn-success">✅ Confirmar</a>
+    </div>
+  </div>
+</div>
+
+<script src="../js/nav.js"></script>
+<script>
+function verificarAutorizacion() {
+  const v = document.getElementById('ambosPadres').value;
+  document.getElementById('alerta-autorizacion').style.display = v === 'si' ? 'none' : 'flex';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGA – Inicio de Sesión</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-box">
+      <div class="login-logo">
+        <div class="logo-circle">🛃</div>
+        <h2>Servicio Nacional de Aduanas</h2>
+        <p>Sistema de Gestión Aduanera (SGA)</p>
+      </div>
+
+      <h3>Ingrese sus credenciales</h3>
+
+      <div class="form-group">
+        <label for="rut">RUT de usuario</label>
+        <input type="text" id="rut" placeholder="Ej: 12.345.678-9" />
+      </div>
+
+      <div class="form-group">
+        <label for="pass">Contraseña</label>
+        <input type="password" id="pass" placeholder="••••••••" />
+      </div>
+
+      <div class="form-group">
+        <label for="perfil">Perfil de acceso</label>
+        <select id="perfil">
+          <option value="">Seleccione perfil...</option>
+          <option value="admin">Administrador</option>
+          <option value="funcionario">Funcionario Aduanero</option>
+          <option value="sag">Inspector SAG</option>
+          <option value="pdi">Inspector PDI</option>
+          <option value="supervisor">Supervisor</option>
+        </select>
+      </div>
+
+      <a href="pages/dashboard.html" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:1rem;">
+        🔐 Iniciar Sesión
+      </a>
+
+      <div class="login-footer">
+        Acceso restringido a personal autorizado del SNA<br/>
+        ¿Problemas de acceso? Contacte a soporte: mesa.ayuda@aduana.cl
+      </div>
+    </div>
+  </div>
+</body>
+</html>

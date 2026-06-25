@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGA – Integración Países</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="dashboard.html" class="navbar-brand">
+    <span style="font-size:1.8rem;">🛃</span>
+    <div>
+      <span class="brand-text">Servicio Nacional de Aduanas</span>
+      <span class="brand-sub">Sistema de Gestión Aduanera (SGA) v2.1</span>
+    </div>
+  </a>
+  <div class="navbar-right">
+    <div class="navbar-user">
+      <div class="avatar">JM</div>
+      <div>
+        <div style="font-size:0.85rem; font-weight:600;">Juan Martínez</div>
+        <div style="font-size:0.72rem; opacity:0.75;">Administrador</div>
+      </div>
+    </div>
+    <a href="../index.html" class="btn-logout">Cerrar sesión</a>
+  </div>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-section">Módulos</div>
+    <a href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+    <a href="menores.html"><span class="icon">👶</span> Registro Menores</a>
+    <a href="vehiculos.html"><span class="icon">🚗</span> Vehículos</a>
+    <a href="sag_pdi.html"><span class="icon">🌿</span> Revisión SAG/PDI</a>
+    <a href="integracion.html" class="active"><span class="icon">🔗</span> Integración Países</a>
+    <div class="sidebar-section">Reportes</div>
+    <a href="estadisticas.html"><span class="icon">📈</span> Estadísticas</a>
+    <a href="reportes.html"><span class="icon">📄</span> Generar Reportes</a>
+    <div class="sidebar-section">Sistema</div>
+    <a href="usuarios.html"><span class="icon">👤</span> Usuarios</a>
+    <a href="../index.html"><span class="icon">🚪</span> Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+    <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Integración con países limítrofes</div>
+    <div class="page-header">
+      <h1>🔗 Integración con Países Limítrofes</h1>
+      <p>Estado de la conexión con sistemas aduaneros de Argentina y otros países fronterizos</p>
+    </div>
+
+    <!-- ESTADO CONEXIONES -->
+    <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="stat-card verde">
+        <div class="stat-label">Sistemas conectados</div>
+        <div class="stat-value">3</div>
+        <div class="stat-sub">Argentina, Bolivia, Perú</div>
+      </div>
+      <div class="stat-card naranja">
+        <div class="stat-label">Consultas hoy</div>
+        <div class="stat-value">4.821</div>
+        <div class="stat-sub">Verificaciones cruzadas</div>
+      </div>
+      <div class="stat-card azul">
+        <div class="stat-label">Tiempo respuesta prom.</div>
+        <div class="stat-value">0.4s</div>
+        <div class="stat-sub">API interaduana</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🌐 Estado de sistemas conectados</div>
+      <table>
+        <thead>
+          <tr><th>País</th><th>Sistema</th><th>Tipo de integración</th><th>Última sincronización</th><th>Estado</th><th>Latencia</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🇦🇷 Argentina</td>
+            <td>SINTIA (Aduana AR)</td>
+            <td>Vehículos + Personas</td>
+            <td>09:13:47</td>
+            <td><span class="badge badge-verde">Activo</span></td>
+            <td>0.3s</td>
+          </tr>
+          <tr>
+            <td>🇧🇴 Bolivia</td>
+            <td>SUMA Aduanas BO</td>
+            <td>Personas</td>
+            <td>09:10:22</td>
+            <td><span class="badge badge-verde">Activo</span></td>
+            <td>0.8s</td>
+          </tr>
+          <tr>
+            <td>🇵🇪 Perú</td>
+            <td>ASISAD</td>
+            <td>Personas</td>
+            <td>08:55:10</td>
+            <td><span class="badge badge-amarillo">Intermitente</span></td>
+            <td>2.1s</td>
+          </tr>
+          <tr>
+            <td>🌐 Interpol</td>
+            <td>I-24/7</td>
+            <td>Alertas PDI</td>
+            <td>09:14:01</td>
+            <td><span class="badge badge-verde">Activo</span></td>
+            <td>0.5s</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CONSULTA CRUZADA -->
+    <div class="card">
+      <div class="card-title">🔍 Consulta cruzada de pasajero</div>
+      <p style="font-size:0.88rem; color:#666; margin-bottom:1rem;">Verifica los antecedentes de un pasajero consultando simultáneamente los sistemas de países conectados.</p>
+      <div class="form-grid" style="grid-template-columns: 2fr 1fr 1fr;">
+        <div class="form-group">
+          <label>N° de documento</label>
+          <input type="text" placeholder="Pasaporte o cédula" value="DNI AR 34.567.890" />
+        </div>
+        <div class="form-group">
+          <label>País emisor</label>
+          <select><option selected>Argentina</option><option>Bolivia</option><option>Perú</option></select>
+        </div>
+        <div class="form-group">
+          <label>&nbsp;</label>
+          <button class="btn btn-primary" onclick="toggleModal('modalConsulta')">Consultar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORIAL -->
+    <div class="card">
+      <div class="card-title">📋 Últimas consultas realizadas</div>
+      <table>
+        <thead>
+          <tr><th>Hora</th><th>Documento</th><th>Países consultados</th><th>Resultado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>09:11</td><td>DNI AR 34.567.890</td><td>Argentina, Interpol</td><td><span class="badge badge-verde">Sin alertas</span></td></tr>
+          <tr><td>09:08</td><td>PAS CL AB123456</td><td>Chile, Interpol</td><td><span class="badge badge-verde">Sin alertas</span></td></tr>
+          <tr><td>08:59</td><td>DNI AR 99.000.111</td><td>Argentina, Interpol</td><td><span class="badge badge-rojo">Alerta PDI</span></td></tr>
+          <tr><td>08:45</td><td>PAS BO XY789</td><td>Bolivia, Interpol</td><td><span class="badge badge-verde">Sin alertas</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL CONSULTA -->
+<div class="modal-overlay" id="modalConsulta">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">🔍 Resultado consulta interaduana</div>
+      <button class="modal-close" onclick="toggleModal('modalConsulta')">✕</button>
+    </div>
+    <div class="alert alert-success">✓ Consulta realizada a 3 sistemas en 0.4 segundos</div>
+    <table style="margin:1rem 0; font-size:0.85rem;">
+      <thead><tr><th>Sistema</th><th>Resultado</th></tr></thead>
+      <tbody>
+        <tr><td>🇦🇷 SINTIA (Argentina)</td><td><span class="badge badge-verde">Sin alertas</span></td></tr>
+        <tr><td>🌐 Interpol I-24/7</td><td><span class="badge badge-verde">Sin alertas</span></td></tr>
+        <tr><td>🛂 Registro civil CL</td><td><span class="badge badge-verde">Sin alertas</span></td></tr>
+      </tbody>
+    </table>
+    <div class="form-actions">
+      <button class="btn btn-secondary" onclick="toggleModal('modalConsulta')">Cerrar</button>
+      <button class="btn btn-success" onclick="toggleModal('modalConsulta')">✅ Autorizar ingreso</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGA – Revisión SAG / PDI</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="dashboard.html" class="navbar-brand">
+    <span style="font-size:1.8rem;">🛃</span>
+    <div>
+      <span class="brand-text">Servicio Nacional de Aduanas</span>
+      <span class="brand-sub">Sistema de Gestión Aduanera (SGA) v2.1</span>
+    </div>
+  </a>
+  <div class="navbar-right">
+    <div class="navbar-user">
+      <div class="avatar">KR</div>
+      <div>
+        <div style="font-size:0.85rem; font-weight:600;">Karla Reyes</div>
+        <div style="font-size:0.72rem; opacity:0.75;">Inspector SAG</div>
+      </div>
+    </div>
+    <a href="../index.html" class="btn-logout">Cerrar sesión</a>
+  </div>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-section">Módulos</div>
+    <a href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+    <a href="menores.html"><span class="icon">👶</span> Registro Menores</a>
+    <a href="vehiculos.html"><span class="icon">🚗</span> Vehículos</a>
+    <a href="sag_pdi.html" class="active"><span class="icon">🌿</span> Revisión SAG/PDI</a>
+    <a href="integracion.html"><span class="icon">🔗</span> Integración Países</a>
+    <div class="sidebar-section">Reportes</div>
+    <a href="estadisticas.html"><span class="icon">📈</span> Estadísticas</a>
+    <a href="reportes.html"><span class="icon">📄</span> Generar Reportes</a>
+    <div class="sidebar-section">Sistema</div>
+    <a href="usuarios.html"><span class="icon">👤</span> Usuarios</a>
+    <a href="../index.html"><span class="icon">🚪</span> Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+    <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Revisión SAG / PDI</div>
+    <div class="page-header">
+      <h1>🌿 Revisión SAG / 🚔 PDI</h1>
+      <p>Control de alimentos, mascotas y verificación de identidad en la frontera</p>
+    </div>
+
+    <div style="display:flex; gap:8px; margin-bottom:1.5rem;">
+      <button class="btn btn-primary btn-sm" onclick="showSection('sag')">🌿 Módulo SAG</button>
+      <button class="btn btn-secondary btn-sm" onclick="showSection('pdi')">🚔 Módulo PDI</button>
+    </div>
+
+    <!-- MÓDULO SAG -->
+    <div id="section-sag">
+      <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="stat-card verde">
+          <div class="stat-label">Declaraciones aprobadas hoy</div>
+          <div class="stat-value">342</div>
+        </div>
+        <div class="stat-card naranja">
+          <div class="stat-label">En revisión</div>
+          <div class="stat-value">18</div>
+        </div>
+        <div class="stat-card rojo">
+          <div class="stat-label">Productos decomisados</div>
+          <div class="stat-value">7</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🌿 Nueva declaración SAG – Alimentos y productos agropecuarios</div>
+        <div class="alert alert-warning">
+          ⚠️ Todo pasajero que ingrese a Chile portando productos animales o vegetales debe completar esta declaración jurada ante funcionarios SAG y Aduanas.
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>N° de pasaporte / RUT pasajero</label>
+            <input type="text" placeholder="Documento de identidad" value="DNI AR 34.567.890" />
+          </div>
+          <div class="form-group">
+            <label>Nombre del pasajero</label>
+            <input type="text" value="Lucía Fernández Gómez" />
+          </div>
+          <div class="form-group">
+            <label>País de procedencia</label>
+            <select>
+              <option selected>Argentina</option>
+              <option>Chile</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>¿Porta productos animales o vegetales?</label>
+            <select id="portaProductos" onchange="mostrarProductos()">
+              <option value="si">Sí</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="detalle-productos">
+          <div class="form-grid" style="margin-top:1rem;">
+            <div class="form-group full">
+              <label>Descripción de los productos declarados</label>
+              <textarea rows="3" placeholder="Detalle cada producto: tipo, cantidad, origen...">Queso fresco artesanal (500g), jamón curado (300g), manzanas (2 kg)</textarea>
+            </div>
+            <div class="form-group">
+              <label>Tipo de producto</label>
+              <select>
+                <option>Producto vegetal</option>
+                <option selected>Producto animal</option>
+                <option>Ambos</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Cantidad total (kg aprox.)</label>
+              <input type="number" value="2.8" />
+            </div>
+          </div>
+
+          <div class="card" style="background:#fff8f0; border:1px solid #fd7e14; margin-top:1rem;">
+            <div class="card-title" style="color:#c85a00;">🚫 Productos prohibidos detectados</div>
+            <p style="font-size:0.88rem; color:#555; margin-bottom:0.8rem;">El sistema detectó posibles productos restringidos:</p>
+            <table>
+              <thead>
+                <tr><th>Producto</th><th>Motivo restricción</th><th>Resolución</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Queso fresco artesanal</td>
+                  <td>Posible riesgo sanitario (lácteo sin certificación)</td>
+                  <td><span class="badge badge-rojo">Decomiso recomendado</span></td>
+                </tr>
+                <tr>
+                  <td>Jamón curado</td>
+                  <td>Producto cárnico – requiere certificado SAG</td>
+                  <td><span class="badge badge-amarillo">Inspección física</span></td>
+                </tr>
+                <tr>
+                  <td>Manzanas (fruta fresca)</td>
+                  <td>Riesgo fitosanitario</td>
+                  <td><span class="badge badge-rojo">Decomiso recomendado</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-secondary">Cancelar</button>
+          <button class="btn btn-danger">🚫 Registrar decomiso</button>
+          <button class="btn btn-success">✅ Aprobar declaración</button>
+        </div>
+      </div>
+
+      <!-- MASCOTAS -->
+      <div class="card">
+        <div class="card-title">🐾 Registro de mascotas</div>
+        <div class="alert alert-info">
+          ℹ️ Quienes ingresen con mascotas deben completar declaración jurada ante SAG y Aduanas. Menores de 18 años deben hacerlo a través de su representante.
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Especie</label>
+            <select><option>Perro</option><option>Gato</option><option>Otra</option></select>
+          </div>
+          <div class="form-group">
+            <label>Raza</label>
+            <input type="text" placeholder="Raza de la mascota" />
+          </div>
+          <div class="form-group">
+            <label>¿Trae certificado veterinario?</label>
+            <select><option>Sí</option><option>No</option></select>
+          </div>
+          <div class="form-group">
+            <label>¿Vacunas al día?</label>
+            <select><option>Sí</option><option>No</option></select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary">Registrar mascota</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO PDI -->
+    <div id="section-pdi" style="display:none;">
+      <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="stat-card azul">
+          <div class="stat-label">Identidades verificadas</div>
+          <div class="stat-value">1.204</div>
+        </div>
+        <div class="stat-card naranja">
+          <div class="stat-label">Alertas activas</div>
+          <div class="stat-value">3</div>
+        </div>
+        <div class="stat-card rojo">
+          <div class="stat-label">Ingresos denegados</div>
+          <div class="stat-value">2</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🚔 Verificación de identidad – PDI</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>N° de documento</label>
+            <input type="text" placeholder="Pasaporte o cédula" />
+          </div>
+          <div class="form-group">
+            <label>Nacionalidad</label>
+            <select>
+              <option>Chile</option>
+              <option selected>Argentina</option>
+              <option>Otra</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="margin-top:0.5rem;" onclick="toggleModal('modalPDI')">🔍 Consultar en base de datos</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">⚠️ Alertas de ingreso</div>
+        <table>
+          <thead>
+            <tr><th>Hora</th><th>Documento</th><th>Motivo alerta</th><th>Estado</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>08:42</td>
+              <td>AR-DNI-12345678</td>
+              <td>Registro orden judicial vigente</td>
+              <td><span class="badge badge-rojo">Denegado</span></td>
+            </tr>
+            <tr>
+              <td>09:05</td>
+              <td>CL-RUT-9876543-2</td>
+              <td>Documento reportado como robado</td>
+              <td><span class="badge badge-rojo">Denegado</span></td>
+            </tr>
+            <tr>
+              <td>09:18</td>
+              <td>AR-PAS-AB123456</td>
+              <td>Solicitud verificación adicional</td>
+              <td><span class="badge badge-amarillo">En revisión</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL PDI -->
+<div class="modal-overlay" id="modalPDI">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">🔍 Resultado consulta PDI</div>
+      <button class="modal-close" onclick="toggleModal('modalPDI')">✕</button>
+    </div>
+    <div class="alert alert-success">✓ Identidad verificada. Sin alertas en bases de datos nacionales e interpol.</div>
+    <p style="font-size:0.88rem; color:#555; margin:1rem 0;">El pasajero no registra impedimentos de ingreso al territorio nacional.</p>
+    <div class="form-actions">
+      <button class="btn btn-secondary" onclick="toggleModal('modalPDI')">Cerrar</button>
+      <button class="btn btn-success" onclick="toggleModal('modalPDI')">✅ Autorizar ingreso</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/nav.js"></script>
+<script>
+function showSection(s) {
+  document.getElementById('section-sag').style.display = s === 'sag' ? 'block' : 'none';
+  document.getElementById('section-pdi').style.display = s === 'pdi' ? 'block' : 'none';
+}
+function mostrarProductos() {
+  const v = document.getElementById('portaProductos').value;
+  document.getElementById('detalle-productos').style.display = v === 'si' ? 'block' : 'none';
+}
+</script>
+</body>
+</html>

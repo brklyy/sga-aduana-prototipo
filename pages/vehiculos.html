@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGA – Control de Vehículos</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="dashboard.html" class="navbar-brand">
+    <span style="font-size:1.8rem;">🛃</span>
+    <div>
+      <span class="brand-text">Servicio Nacional de Aduanas</span>
+      <span class="brand-sub">Sistema de Gestión Aduanera (SGA) v2.1</span>
+    </div>
+  </a>
+  <div class="navbar-right">
+    <div class="navbar-user">
+      <div class="avatar">JM</div>
+      <div>
+        <div style="font-size:0.85rem; font-weight:600;">Juan Martínez</div>
+        <div style="font-size:0.72rem; opacity:0.75;">Funcionario Aduanero</div>
+      </div>
+    </div>
+    <a href="../index.html" class="btn-logout">Cerrar sesión</a>
+  </div>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-section">Módulos</div>
+    <a href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+    <a href="menores.html"><span class="icon">👶</span> Registro Menores</a>
+    <a href="vehiculos.html" class="active"><span class="icon">🚗</span> Vehículos</a>
+    <a href="sag_pdi.html"><span class="icon">🌿</span> Revisión SAG/PDI</a>
+    <a href="integracion.html"><span class="icon">🔗</span> Integración Países</a>
+    <div class="sidebar-section">Reportes</div>
+    <a href="estadisticas.html"><span class="icon">📈</span> Estadísticas</a>
+    <a href="reportes.html"><span class="icon">📄</span> Generar Reportes</a>
+    <div class="sidebar-section">Sistema</div>
+    <a href="usuarios.html"><span class="icon">👤</span> Usuarios</a>
+    <a href="../index.html"><span class="icon">🚪</span> Cerrar sesión</a>
+  </aside>
+
+  <main class="main">
+    <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Control de Vehículos</div>
+    <div class="page-header">
+      <h1>🚗 Control de Vehículos Motorizados</h1>
+      <p>Registro y verificación de vehículos para salida/entrada temporal Chile-Argentina</p>
+    </div>
+
+    <!-- TABS -->
+    <div style="display:flex; gap:8px; margin-bottom:1.5rem;">
+      <button class="btn btn-primary btn-sm" onclick="showTab('nuevo')">+ Nuevo registro</button>
+      <button class="btn btn-secondary btn-sm" onclick="showTab('consulta')">🔍 Consultar vehículo</button>
+      <button class="btn btn-secondary btn-sm" onclick="showTab('lista')">📋 Lista del día</button>
+    </div>
+
+    <!-- TAB NUEVO -->
+    <div id="tab-nuevo">
+      <div class="card">
+        <div class="card-title">🚗 Registro de salida temporal de vehículo</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Tipo de trámite</label>
+            <select>
+              <option>Salida temporal Chile → Argentina</option>
+              <option>Admisión temporal Argentina → Chile</option>
+              <option>Vehículo de funcionario diplomático</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tipo de vehículo</label>
+            <select>
+              <option>Automóvil particular</option>
+              <option>Camioneta 4×4</option>
+              <option>Motocicleta</option>
+              <option>Bus de turismo</option>
+              <option>Camión de carga</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Placa/Patente</label>
+            <input type="text" placeholder="Ej: BCDF-12" value="JKHM-34" />
+          </div>
+          <div class="form-group">
+            <label>País de origen</label>
+            <select>
+              <option selected>Chile</option>
+              <option>Argentina</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Marca / Modelo</label>
+            <input type="text" placeholder="Ej: Toyota Corolla" value="Hyundai Tucson" />
+          </div>
+          <div class="form-group">
+            <label>Año del vehículo</label>
+            <input type="number" placeholder="Año" value="2022" />
+          </div>
+          <div class="form-group">
+            <label>N° de serie / VIN</label>
+            <input type="text" placeholder="Número de serie" value="1HGCM82633A004352" />
+          </div>
+          <div class="form-group">
+            <label>Color</label>
+            <input type="text" placeholder="Color del vehículo" value="Gris plata" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">👤 Datos del propietario / conductor</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nombre completo</label>
+            <input type="text" value="Carlos Andrés Fuentes López" />
+          </div>
+          <div class="form-group">
+            <label>RUT / Documento</label>
+            <input type="text" value="16.789.432-K" />
+          </div>
+          <div class="form-group">
+            <label>N° de pasajeros</label>
+            <input type="number" value="4" min="1" />
+          </div>
+          <div class="form-group">
+            <label>Fecha de retorno estimada</label>
+            <input type="date" value="2026-07-10" />
+          </div>
+          <div class="form-group">
+            <label>Destino declarado</label>
+            <input type="text" value="Mendoza, Argentina – uso turístico" />
+          </div>
+          <div class="form-group">
+            <label>Plazo autorizado</label>
+            <input type="text" value="180 días corridos" readonly style="background:#f0f0f0;" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📄 Documentos del vehículo</div>
+        <table>
+          <thead>
+            <tr><th>Documento</th><th>Requerido</th><th>Estado</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Padrón / Registro del vehículo</td>
+              <td>Sí</td>
+              <td><span class="badge badge-verde">Presentado</span></td>
+              <td><button class="btn btn-secondary btn-sm">Ver</button></td>
+            </tr>
+            <tr>
+              <td>Licencia de conducir vigente</td>
+              <td>Sí</td>
+              <td><span class="badge badge-verde">Presentada</span></td>
+              <td><button class="btn btn-secondary btn-sm">Ver</button></td>
+            </tr>
+            <tr>
+              <td>SOAP / Seguro obligatorio</td>
+              <td>Sí</td>
+              <td><span class="badge badge-verde">Vigente</span></td>
+              <td><button class="btn btn-secondary btn-sm">Ver</button></td>
+            </tr>
+            <tr>
+              <td>Formulario Salida Temporal (Acuerdo CL-AR)</td>
+              <td>Sí</td>
+              <td><span class="badge badge-amarillo">Generando...</span></td>
+              <td><button class="btn btn-primary btn-sm" onclick="toggleModal('modalFormulario')">Generar</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="form-actions">
+          <a href="dashboard.html" class="btn btn-secondary">Cancelar</a>
+          <button class="btn btn-primary">✅ Registrar salida temporal</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB CONSULTA (hidden by default) -->
+    <div id="tab-consulta" style="display:none;">
+      <div class="card">
+        <div class="card-title">🔍 Consultar vehículo por placa</div>
+        <div class="form-grid" style="grid-template-columns: 2fr 1fr;">
+          <div class="form-group">
+            <label>Patente / Placa</label>
+            <input type="text" placeholder="Ingrese patente..." />
+          </div>
+          <div class="form-group">
+            <label>&nbsp;</label>
+            <button class="btn btn-primary">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB LISTA (hidden by default) -->
+    <div id="tab-lista" style="display:none;">
+      <div class="card">
+        <div class="card-title">📋 Vehículos registrados hoy – 25 jun 2026</div>
+        <table>
+          <thead>
+            <tr><th>Hora</th><th>Placa</th><th>Tipo</th><th>Propietario</th><th>Trámite</th><th>Estado</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>08:12</td><td>BCDF-12</td><td>Automóvil</td><td>María Torres</td><td>Salida temporal</td><td><span class="badge badge-verde">Aprobado</span></td></tr>
+            <tr><td>08:35</td><td>AR-XYZ-123</td><td>SUV</td><td>Ricardo Mena</td><td>Admisión temporal</td><td><span class="badge badge-verde">Aprobado</span></td></tr>
+            <tr><td>09:01</td><td>LMNO-78</td><td>Camioneta</td><td>Pedro Sánchez</td><td>Salida temporal</td><td><span class="badge badge-amarillo">Pendiente</span></td></tr>
+            <tr><td>09:12</td><td>JKHM-34</td><td>SUV</td><td>Carlos Fuentes</td><td>Salida temporal</td><td><span class="badge badge-azul">En proceso</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL FORMULARIO -->
+<div class="modal-overlay" id="modalFormulario">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">📄 Formulario Acuerdo Chileno-Argentino</div>
+      <button class="modal-close" onclick="toggleModal('modalFormulario')">✕</button>
+    </div>
+    <p style="font-size:0.88rem; color:#555; margin-bottom:1rem;">
+      Se generará el documento <strong>"Salida y Admisión Temporal de Vehículos Acuerdo Chileno-Argentino"</strong> en 2 copias (una para Aduana, una para el pasajero).
+    </p>
+    <div class="alert alert-info">ℹ️ El formulario tiene una vigencia de 180 días corridos desde la fecha de emisión.</div>
+    <div class="form-actions">
+      <button class="btn btn-secondary" onclick="toggleModal('modalFormulario')">Cancelar</button>
+      <button class="btn btn-primary">🖨️ Generar e imprimir (2 copias)</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/nav.js"></script>
+<script>
+function showTab(tab) {
+  ['nuevo','consulta','lista'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t === tab ? 'block' : 'none';
+  });
+}
+</script>
+</body>
+</html>
