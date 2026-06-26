@@ -10,7 +10,7 @@
 
 <nav class="navbar">
   <a href="dashboard.html" class="navbar-brand">
-    <span style="font-size:1.8rem;">🛃</span>
+    <span style="font-size:1.8rem;">SNA</span>
     <div>
       <span class="brand-text">Servicio Nacional de Aduanas</span>
       <span class="brand-sub">Sistema de Gestión Aduanera (SGA) v2.1</span>
@@ -31,34 +31,34 @@
 <div class="layout">
   <aside class="sidebar">
     <div class="sidebar-section">Módulos</div>
-    <a href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
-    <a href="menores.html" class="active"><span class="icon">👶</span> Registro Menores</a>
-    <a href="vehiculos.html"><span class="icon">🚗</span> Vehículos</a>
-    <a href="sag_pdi.html"><span class="icon">🌿</span> Revisión SAG/PDI</a>
-    <a href="integracion.html"><span class="icon">🔗</span> Integración Países</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="menores.html" class="active">Registro Menores</a>
+    <a href="vehiculos.html">Vehículos</a>
+    <a href="sag_pdi.html">Revisión SAG/PDI</a>
+    <a href="integracion.html">Integración Países</a>
     <div class="sidebar-section">Reportes</div>
-    <a href="estadisticas.html"><span class="icon">📈</span> Estadísticas</a>
-    <a href="reportes.html"><span class="icon">📄</span> Generar Reportes</a>
+    <a href="estadisticas.html">Estadísticas</a>
+    <a href="reportes.html">Generar Reportes</a>
     <div class="sidebar-section">Sistema</div>
-    <a href="usuarios.html"><span class="icon">👤</span> Usuarios</a>
-    <a href="../index.html"><span class="icon">🚪</span> Cerrar sesión</a>
+    <a href="usuarios.html">Usuarios</a>
+    <a href="../index.html">Cerrar sesión</a>
   </aside>
 
   <main class="main">
     <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Registro de Menores de Edad</div>
     <div class="page-header">
-      <h1>👶 Registro de Menores de Edad</h1>
+      <h1> Registro de Menores de Edad</h1>
       <p>Verificación y registro de documentación para menores que cruzan la frontera</p>
     </div>
 
     <div class="alert alert-info">
-      ℹ️ Los menores de 18 años deben portar cédula de identidad o pasaporte vigente + autorización notarial cuando viajan sin ambos padres.
+      Los menores de 18 años deben portar cédula de identidad o pasaporte vigente + autorización notarial cuando viajan sin ambos padres.
     </div>
 
     <!-- STEPS -->
     <div class="steps">
       <div class="step done">
-        <div class="step-circle">✓</div>
+        <div class="step-circle">OK</div>
         <div class="step-label">Identificación</div>
       </div>
       <div class="step-line"></div>
@@ -80,7 +80,7 @@
 
     <!-- FORMULARIO -->
     <div class="card">
-      <div class="card-title">📋 Datos del menor</div>
+      <div class="card-title">Datos del menor</div>
       <div class="form-grid">
         <div class="form-group">
           <label>Nombre completo</label>
@@ -126,7 +126,7 @@
     </div>
 
     <div class="card">
-      <div class="card-title">📄 Documentación requerida</div>
+      <div class="card-title">Documentación requerida</div>
       <div class="form-grid">
         <div class="form-group">
           <label>¿Viaja con ambos padres?</label>
@@ -158,13 +158,13 @@
       </div>
 
       <div id="alerta-autorizacion" class="alert alert-warning" style="margin-top:1rem;">
-        ⚠️ El menor viaja sin ambos padres. <strong>Se requiere autorización notarial obligatoria.</strong>
+        El menor viaja sin ambos padres. <strong>Se requiere autorización notarial obligatoria.</strong>
         Verificar vigencia y autenticidad del documento.
       </div>
     </div>
 
     <div class="card">
-      <div class="card-title">✅ Verificación de documentos</div>
+      <div class="card-title">Verificación de documentos</div>
       <table>
         <thead>
           <tr>
@@ -199,7 +199,7 @@
 
     <div class="form-actions">
       <a href="dashboard.html" class="btn btn-secondary">Cancelar</a>
-      <button class="btn btn-primary" onclick="toggleModal('modalConfirmacion')">✅ Registrar y aprobar</button>
+      <button class="btn btn-primary" onclick="toggleModal('modalConfirmacion')">Registrar y aprobar</button>
     </div>
   </main>
 </div>
@@ -208,18 +208,18 @@
 <div class="modal-overlay" id="modalConfirmacion">
   <div class="modal-box">
     <div class="modal-header">
-      <div class="modal-title">✅ Confirmar registro</div>
-      <button class="modal-close" onclick="toggleModal('modalConfirmacion')">✕</button>
+      <div class="modal-title">Confirmar registro</div>
+      <button class="modal-close" onclick="toggleModal('modalConfirmacion')">×</button>
     </div>
     <p style="margin-bottom:1rem; font-size:0.9rem; color:#555;">
       ¿Confirma el registro y aprobación del paso fronterizo para el menor <strong>Sofía Andrea González Ramos</strong>?
     </p>
     <div class="alert alert-success">
-      ✓ Todos los documentos obligatorios han sido verificados correctamente.
+      Todos los documentos obligatorios han sido verificados correctamente.
     </div>
     <div class="form-actions">
       <button class="btn btn-secondary" onclick="toggleModal('modalConfirmacion')">Cancelar</button>
-      <a href="dashboard.html" class="btn btn-success">✅ Confirmar</a>
+      <a href="dashboard.html" class="btn btn-success">Confirmar</a>
     </div>
   </div>
 </div>

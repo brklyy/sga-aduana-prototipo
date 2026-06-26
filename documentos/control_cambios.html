@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Control de Cambios – SGA Aduana</title>
+  <style>
+    @media print { body { margin: 1cm; } .no-print { display: none; } }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11.5px; color: #1a1a1a; background: #fff; padding: 2rem; }
+    .header { border-bottom: 3px solid #003366; padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; }
+    .header-left h1 { font-size: 17px; color: #003366; }
+    .header-left h2 { font-size: 12px; color: #555; font-weight: normal; margin-top: 4px; }
+    .header-right { text-align: right; font-size: 11px; color: #555; }
+    .logo { font-size: 1.8rem; }
+    h3 { font-size: 12px; color: #003366; background: #e8f0fe; padding: 5px 10px; margin: 1.2rem 0 0.6rem; border-left: 4px solid #003366; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1.2rem; font-size: 11px; }
+    th { background: #003366; color: white; padding: 7px 10px; text-align: left; }
+    td { border: 1px solid #ccc; padding: 6px 10px; vertical-align: top; }
+    tr:nth-child(even) td { background: #f5f8ff; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 9.5px; font-weight: 700; }
+    .badge-verde { background: #d4edda; color: #155724; }
+    .badge-azul { background: #d1ecf1; color: #0c5460; }
+    .badge-naranja { background: #fff3cd; color: #856404; }
+    .badge-morado { background: #e2d9f3; color: #4a235a; }
+    .ver { font-weight: 800; color: #003366; font-size: 12px; }
+    .footer { border-top: 1px solid #ccc; margin-top: 1.5rem; padding-top: 0.6rem; font-size: 10px; color: #888; display: flex; justify-content: space-between; }
+    .btn-print { position: fixed; top: 1rem; right: 1rem; background: #003366; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+    .meta-table td { border: 1px solid #ccc; padding: 7px 10px; }
+    .meta-table td:first-child { background: #003366; color: white; font-weight: 600; width: 28%; }
+    .nota { background: #fff8e1; border: 1px solid #ffc107; border-radius: 6px; padding: 10px 14px; margin-bottom: 1rem; font-size: 11px; }
+    .timeline { border-left: 3px solid #003366; padding-left: 1rem; margin: 1rem 0; }
+    .timeline-item { margin-bottom: 1rem; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -1.4rem; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #003366; }
+    .timeline-item .ver-tag { font-weight: 800; color: #003366; font-size: 13px; }
+    .timeline-item .fecha { color: #888; font-size: 10px; }
+    .timeline-item .desc { margin-top: 3px; }
+  </style>
+</head>
+<body>
+
+<button class="btn-print no-print" onclick="window.print()">Imprimir / PDF</button>
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo">SNA</div>
+    <h1>Planilla de Control de Cambios</h1>
+    <h2>Sistema de Gestión Aduanera (SGA) – Técnica: Control de versiones con Git</h2>
+  </div>
+  <div class="header-right">
+    <div><strong>Código:</strong> SGA-CC-001</div>
+    <div><strong>Versión actual:</strong> 2.1</div>
+    <div><strong>Última actualización:</strong> 25/06/2026</div>
+  </div>
+</div>
+
+<!-- METADATOS -->
+<table class="meta-table">
+  <tr><td>Proyecto</td><td>Sistema de Gestión Aduanera – Paso Los Libertadores</td></tr>
+  <tr><td>Herramienta de versionado</td><td>Git + GitHub (rama: main)</td></tr>
+  <tr><td>Repositorio</td><td>github.com/[usuario]/sga-aduana-prototipo</td></tr>
+  <tr><td>Versión inicial</td><td>v1.0 – 23/06/2026</td></tr>
+  <tr><td>Versión actual</td><td>v2.1 – 25/06/2026</td></tr>
+  <tr><td>Total de cambios registrados</td><td>7 commits</td></tr>
+</table>
+
+<div class="nota">
+  <strong>Técnica utilizada:</strong> Control de versiones semántico con Git. Cada cambio al prototipo se registra con un <strong>commit</strong> que incluye: tipo de cambio, módulo afectado y descripción. El formato de versión es <code>MAJOR.MINOR</code>, donde MINOR aumenta por mejoras y MAJOR por cambios que afectan la estructura general.
+</div>
+
+<!-- HISTORIAL VERSIONES -->
+<h3>Historial de versiones</h3>
+
+<div class="timeline">
+  <div class="timeline-item">
+    <div class="ver-tag">v1.0</div>
+    <div class="fecha">23/06/2026 – commit: a1b2c3d</div>
+    <div class="desc">Versión inicial del prototipo. Creación de estructura base del proyecto (HTML/CSS), pantalla de Login y Dashboard con indicadores estáticos.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="ver-tag">v1.1</div>
+    <div class="fecha">23/06/2026 – commit: e4f5g6h</div>
+    <div class="desc">Se agrega módulo de Registro de Menores de Edad con formulario de pasos, validación dinámica de autorización notarial y modal de confirmación.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="ver-tag">v1.2</div>
+    <div class="fecha">24/06/2026 – commit: i7j8k9l</div>
+    <div class="desc">Se agrega módulo de Control de Vehículos con tabs (nuevo registro, consulta, lista del día) y modal para formulario Acuerdo Chileno-Argentino.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="ver-tag">v1.3</div>
+    <div class="fecha">24/06/2026 – commit: m1n2o3p</div>
+    <div class="desc">Se agrega módulo SAG/PDI. Módulo SAG incluye declaración de alimentos, detección de productos restringidos y registro de mascotas. Módulo PDI incluye consulta a base de datos y tabla de alertas.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="ver-tag">v2.0</div>
+    <div class="fecha">24/06/2026 – commit: q4r5s6t</div>
+    <div class="desc">Versión mayor: se agregan módulo de Estadísticas (gráfico de barras y donut), módulo de Reportes (PDF/Excel), módulo de Integración con Países y módulo de Gestión de Usuarios. Refactorización completa del sidebar para conectar todos los módulos.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="ver-tag">v2.1</div>
+    <div class="fecha">25/06/2026 – commit: u7v8w9x</div>
+    <div class="desc">Corrección de enlaces de navegación entre páginas. Ajuste de colores corporativos Aduana Chile (#003366). Mejora de responsividad. Documentación: se agregan plan de pruebas, casos de prueba y planilla de control de cambios.</div>
+  </div>
+</div>
+
+<!-- TABLA DETALLADA -->
+<h3>Tabla detallada de cambios</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Versión</th>
+      <th>Fecha</th>
+      <th>Tipo</th>
+      <th>Módulo afectado</th>
+      <th>Descripción del cambio</th>
+      <th>Responsable</th>
+      <th>Commit Git</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="ver">v1.0</td>
+      <td>23/06/2026</td>
+      <td><span class="badge badge-azul">Creación</span></td>
+      <td>Base del proyecto</td>
+      <td>Estructura inicial: index.html, style.css, nav.js, dashboard. Login y Dashboard funcionales con navegación básica.</td>
+      <td>[Integrante 1]</td>
+      <td><code>a1b2c3d</code></td>
+      <td><span class="badge badge-verde">Aplicado</span></td>
+    </tr>
+    <tr>
+      <td class="ver">v1.1</td>
+      <td>23/06/2026</td>
+      <td><span class="badge badge-verde">Mejora</span></td>
+      <td>Menores</td>
+      <td>Nuevo módulo menores.html con stepper de 4 pasos, lógica de autorización notarial dinámica, tabla de verificación de documentos y modal de confirmación.</td>
+      <td>[Integrante 2]</td>
+      <td><code>e4f5g6h</code></td>
+      <td><span class="badge badge-verde">Aplicado</span></td>
+    </tr>
+    <tr>
+      <td class="ver">v1.2</td>
+      <td>24/06/2026</td>
+      <td><span class="badge badge-verde">Mejora</span></td>
+      <td>Vehículos</td>
+      <td>Nuevo módulo vehiculos.html con 3 tabs, formulario de registro completo, tabla de documentos y modal para formulario Acuerdo CL-AR.</td>
+      <td>[Integrante 1]</td>
+      <td><code>i7j8k9l</code></td>
+      <td><span class="badge badge-verde">Aplicado</span></td>
+    </tr>
+    <tr>
+      <td class="ver">v1.3</td>
+      <td>24/06/2026</td>
+      <td><span class="badge badge-verde">Mejora</span></td>
+      <td>SAG / PDI</td>
+      <td>Nuevo módulo sag_pdi.html. SAG: declaración alimentos con detección automática de productos restringidos y módulo mascotas. PDI: consulta a base de datos, tabla de alertas.</td>
+      <td>[Integrante 3]</td>
+      <td><code>m1n2o3p</code></td>
+      <td><span class="badge badge-verde">Aplicado</span></td>
+    </tr>
+    <tr>
+      <td class="ver">v2.0</td>
+      <td>24/06/2026</td>
+      <td><span class="badge badge-morado">Mayor</span></td>
+      <td>Todos</td>
+      <td>Incorporación de 4 módulos: estadisticas.html (gráficos), reportes.html (PDF/Excel), integracion.html (países limítrofes), usuarios.html (CRUD + perfiles). Refactorización de sidebar y sistema de navegación completo.</td>
+      <td>[Integrante 1]</td>
+      <td><code>q4r5s6t</code></td>
+      <td><span class="badge badge-verde">Aplicado</span></td>
+    </tr>
+    <tr>
+      <td class="ver">v2.1</td>
+      <td>25/06/2026</td>
+      <td><span class="badge badge-naranja">Corrección</span></td>
+      <td>Global</td>
+      <td>Fix: corrección de rutas relativas en links del sidebar. Ajuste colores corporativos. Mejora responsividad mobile. Adición de documentos: plan de pruebas, casos de prueba, control de cambios.</td>
+      <td>[Integrante 2]</td>
+      <td><code>u7v8w9x</code></td>
+      <td><span class="badge badge-verde">Aplicado</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- NOMENCLATURA -->
+<h3>Nomenclatura utilizada</h3>
+<table style="max-width:500px;">
+  <thead><tr><th>Tipo</th><th>Significado</th><th>Incremento de versión</th></tr></thead>
+  <tbody>
+    <tr><td><span class="badge badge-azul">Creación</span></td><td>Nuevo archivo o módulo desde cero</td><td>MINOR +1</td></tr>
+    <tr><td><span class="badge badge-verde">Mejora</span></td><td>Adición de funcionalidad a módulo existente</td><td>MINOR +1</td></tr>
+    <tr><td><span class="badge badge-naranja">Corrección</span></td><td>Fix de error o ajuste visual</td><td>MINOR +1</td></tr>
+    <tr><td><span class="badge badge-morado">Mayor</span></td><td>Cambio estructural significativo</td><td>MAJOR +1</td></tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  <span>SGA – Sistema de Gestión Aduanera · Control de Cambios SGA-CC-001 · Técnica: Git + GitHub</span>
+  <span>Ingeniería de Software – RQY1102 · DuocUC · 2026</span>
+</div>
+
+</body>
+</html>

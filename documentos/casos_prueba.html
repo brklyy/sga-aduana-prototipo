@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Casos de Prueba – SGA Aduana</title>
+  <style>
+    @media print { body { margin: 0.8cm; } .no-print { display: none; } }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; color: #1a1a1a; background: #fff; padding: 2rem; }
+    .header { border-bottom: 3px solid #003366; padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; }
+    .header-left h1 { font-size: 17px; color: #003366; }
+    .header-left h2 { font-size: 12px; color: #555; font-weight: normal; margin-top: 4px; }
+    .header-right { text-align: right; font-size: 11px; color: #555; }
+    .logo { font-size: 1.8rem; }
+    h3 { font-size: 12px; color: #003366; background: #e8f0fe; padding: 5px 10px; margin: 1.2rem 0 0.6rem; border-left: 4px solid #003366; page-break-after: avoid; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1.2rem; font-size: 10.5px; page-break-inside: avoid; }
+    th { background: #003366; color: white; padding: 6px 8px; text-align: left; }
+    td { border: 1px solid #ccc; padding: 5px 8px; vertical-align: top; }
+    tr:nth-child(even) td { background: #f5f8ff; }
+    .badge { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 9.5px; font-weight: 700; }
+    .badge-verde { background: #d4edda; color: #155724; }
+    .badge-rojo { background: #f8d7da; color: #721c24; }
+    .badge-amarillo { background: #fff3cd; color: #856404; }
+    .id { font-weight: 700; color: #003366; white-space: nowrap; }
+    .footer { border-top: 1px solid #ccc; margin-top: 1.5rem; padding-top: 0.6rem; font-size: 10px; color: #888; display: flex; justify-content: space-between; }
+    .btn-print { position: fixed; top: 1rem; right: 1rem; background: #003366; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+    .resumen { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+    .resumen-card { border: 1px solid #ccc; border-radius: 6px; padding: 10px; text-align: center; }
+    .resumen-card .num { font-size: 22px; font-weight: 800; color: #003366; }
+    .resumen-card .lbl { font-size: 10px; color: #888; }
+    .resumen-card.verde .num { color: #155724; }
+    .resumen-card.rojo .num { color: #721c24; }
+    .resumen-card.naranja .num { color: #856404; }
+  </style>
+</head>
+<body>
+
+<button class="btn-print no-print" onclick="window.print()">Imprimir / PDF</button>
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo">SNA</div>
+    <h1>Planilla de Casos de Prueba y Registro de Resultados</h1>
+    <h2>Sistema de Gestión Aduanera (SGA) – Normativa ISO/IEC 25000 · ISO/IEC 9126</h2>
+  </div>
+  <div class="header-right">
+    <div><strong>Código:</strong> SGA-CP-001</div>
+    <div><strong>Versión:</strong> 1.0</div>
+    <div><strong>Fecha ejecución:</strong> 25/06/2026</div>
+    <div><strong>Ejecutado por:</strong> [Nombre equipo]</div>
+  </div>
+</div>
+
+<!-- RESUMEN -->
+<div class="resumen">
+  <div class="resumen-card"><div class="num">20</div><div class="lbl">Total casos</div></div>
+  <div class="resumen-card verde"><div class="num">17</div><div class="lbl">Aprobados</div></div>
+  <div class="resumen-card rojo"><div class="num">2</div><div class="lbl">Fallidos</div></div>
+  <div class="resumen-card naranja"><div class="num">1</div><div class="lbl">Pendiente</div></div>
+</div>
+
+<!-- ───── MÓDULO LOGIN ───── -->
+<h3>Módulo 1: Autenticación (Login) · Característica ISO: Seguridad / Funcionalidad</h3>
+<table>
+  <thead>
+    <tr><th>ID</th><th>Caso de prueba</th><th>Datos de entrada</th><th>Resultado esperado</th><th>Resultado obtenido</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="id">CP-01</td>
+      <td>Login con credenciales válidas</td>
+      <td>RUT: 16.789.432-K<br/>Contraseña: ****<br/>Perfil: Funcionario</td>
+      <td>Redirige al Dashboard. Muestra nombre y perfil del usuario en navbar.</td>
+      <td>Redirige correctamente al Dashboard con nombre visible.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-02</td>
+      <td>Login sin seleccionar perfil</td>
+      <td>RUT y contraseña ingresados.<br/>Perfil: (sin seleccionar)</td>
+      <td>El sistema no debe permitir el acceso sin perfil seleccionado.</td>
+      <td>El campo queda vacío pero permite avanzar (mejora pendiente).</td>
+      <td><span class="badge badge-amarillo">Pendiente</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-03</td>
+      <td>Acceso restringido por perfil</td>
+      <td>Perfil: Inspector SAG</td>
+      <td>Solo debe visualizar módulos SAG/PDI y Dashboard. No debe ver módulo Usuarios.</td>
+      <td>Sidebar muestra solo los módulos correspondientes al perfil SAG.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ───── MÓDULO DASHBOARD ───── -->
+<h3>Módulo 2: Dashboard · Característica ISO: Usabilidad / Adecuación funcional</h3>
+<table>
+  <thead>
+    <tr><th>ID</th><th>Caso de prueba</th><th>Datos de entrada</th><th>Resultado esperado</th><th>Resultado obtenido</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="id">CP-04</td>
+      <td>Visualización de indicadores en tiempo real</td>
+      <td>Acceso al dashboard como Funcionario.</td>
+      <td>Muestra 4 tarjetas de estadísticas: personas, aprobados, pendientes, rechazados.</td>
+      <td>Las 4 tarjetas se muestran con datos numéricos y etiquetas claras.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-05</td>
+      <td>Alerta de capacidad alta</td>
+      <td>Dashboard al cargar.</td>
+      <td>Debe mostrarse alerta visible cuando algún punto supera el 80% de capacidad.</td>
+      <td>Se muestra alerta naranja con el mensaje de flujo elevado.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-06</td>
+      <td>Navegación desde acciones rápidas</td>
+      <td>Click en "Nuevo registro menor".</td>
+      <td>Redirige al módulo de Registro de Menores.</td>
+      <td>Redirige correctamente a menores.html.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ───── MÓDULO MENORES ───── -->
+<h3>Módulo 3: Registro de Menores de Edad · Característica ISO: Funcionalidad / Usabilidad</h3>
+<table>
+  <thead>
+    <tr><th>ID</th><th>Caso de prueba</th><th>Datos de entrada</th><th>Resultado esperado</th><th>Resultado obtenido</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="id">CP-07</td>
+      <td>Registro de menor con ambos padres presentes</td>
+      <td>Nombre: Sofía González<br/>Edad: 11 años<br/>¿Ambos padres? Sí</td>
+      <td>No muestra alerta de autorización notarial.</td>
+      <td>La alerta de autorización se oculta correctamente al seleccionar "Sí".</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-08</td>
+      <td>Registro de menor sin ambos padres</td>
+      <td>¿Ambos padres? No</td>
+      <td>Muestra alerta de advertencia solicitando autorización notarial obligatoria.</td>
+      <td>Aparece alerta naranja con el mensaje de obligatoriedad.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-09</td>
+      <td>Verificación de estado de documentos</td>
+      <td>Formulario con documentos cargados.</td>
+      <td>La tabla muestra estado de cada documento (Vigente, Verificada, Pendiente).</td>
+      <td>La tabla muestra correctamente los 3 estados con badges de colores.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-10</td>
+      <td>Modal de confirmación al registrar</td>
+      <td>Click en "Registrar y aprobar".</td>
+      <td>Aparece modal de confirmación con nombre del menor y documentos verificados.</td>
+      <td>Modal se despliega con la información correcta del menor.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ───── MÓDULO VEHÍCULOS ───── -->
+<h3>Módulo 4: Control de Vehículos · Característica ISO: Funcionalidad / Portabilidad</h3>
+<table>
+  <thead>
+    <tr><th>ID</th><th>Caso de prueba</th><th>Datos de entrada</th><th>Resultado esperado</th><th>Resultado obtenido</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="id">CP-11</td>
+      <td>Registro nuevo vehículo con datos completos</td>
+      <td>Placa: JKHM-34, Marca: Hyundai Tucson, Año: 2022</td>
+      <td>Formulario admite todos los datos. Documentos se listan en tabla inferior.</td>
+      <td>Formulario muestra todos los campos requeridos y la tabla de documentos.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-12</td>
+      <td>Cambio entre pestañas (tabs)</td>
+      <td>Click en "Consultar vehículo" y "Lista del día".</td>
+      <td>Cada tab muestra su contenido correspondiente sin mostrar las otras.</td>
+      <td>Los tabs cambian correctamente mostrando sólo la sección activa.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-13</td>
+      <td>Generación de formulario Acuerdo CL-AR</td>
+      <td>Click en "Generar" en tabla de documentos.</td>
+      <td>Se abre modal explicando el formulario de Acuerdo Chileno-Argentino.</td>
+      <td>Modal se abre con información del formulario y opción de imprimir 2 copias.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ───── MÓDULO SAG/PDI ───── -->
+<h3>Módulo 5: Revisión SAG / PDI · Característica ISO: Funcionalidad / Seguridad</h3>
+<table>
+  <thead>
+    <tr><th>ID</th><th>Caso de prueba</th><th>Datos de entrada</th><th>Resultado esperado</th><th>Resultado obtenido</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="id">CP-14</td>
+      <td>Declaración SAG con productos restringidos</td>
+      <td>Productos: queso, jamón, manzanas</td>
+      <td>Sistema detecta productos restringidos y muestra tabla de decomiso recomendado.</td>
+      <td>Aparece tarjeta roja con los 3 productos y sus acciones recomendadas.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-15</td>
+      <td>Pasajero sin productos SAG</td>
+      <td>¿Porta productos? No</td>
+      <td>Oculta la sección de detalle de productos.</td>
+      <td>La sección de productos se oculta dinámicamente.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-16</td>
+      <td>Consulta PDI con resultado positivo</td>
+      <td>Click en "Consultar en base de datos".</td>
+      <td>Modal muestra resultado por sistema (SINTIA, Interpol, Registro civil) sin alertas.</td>
+      <td>Modal aparece con los 3 sistemas y badge verde "Sin alertas".</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ───── MÓDULO REPORTES ───── -->
+<h3>Módulo 6: Estadísticas y Reportes · Característica ISO: Adecuación funcional / Usabilidad</h3>
+<table>
+  <thead>
+    <tr><th>ID</th><th>Caso de prueba</th><th>Datos de entrada</th><th>Resultado esperado</th><th>Resultado obtenido</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="id">CP-17</td>
+      <td>Visualización de gráfico de barras</td>
+      <td>Acceso a módulo Estadísticas.</td>
+      <td>Gráfico de barras muestra flujo diario de 7 días con valores y etiquetas.</td>
+      <td>Gráfico se renderiza correctamente con barras proporcionales y valores visibles.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-18</td>
+      <td>Generación de reporte con configuración</td>
+      <td>Tipo: Consolidado, Formato: PDF, Período: Jun 2026</td>
+      <td>Modal confirma generación exitosa con nombre del reporte y opciones de descarga.</td>
+      <td>Modal aparece con mensaje de éxito y botones de descarga y envío por correo.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ───── COMPATIBILIDAD ───── -->
+<h3>Módulo 7: Compatibilidad y Portabilidad · Característica ISO: Compatibilidad / Portabilidad</h3>
+<table>
+  <thead>
+    <tr><th>ID</th><th>Caso de prueba</th><th>Datos de entrada</th><th>Resultado esperado</th><th>Resultado obtenido</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="id">CP-19</td>
+      <td>Acceso desde Google Chrome</td>
+      <td>URL GitHub Pages en Chrome.</td>
+      <td>Todas las pantallas cargan correctamente con estilos aplicados.</td>
+      <td>El prototipo carga y navega sin errores en Chrome.</td>
+      <td><span class="badge badge-verde">Aprobado</span></td>
+    </tr>
+    <tr>
+      <td class="id">CP-20</td>
+      <td>Acceso desde Firefox</td>
+      <td>URL GitHub Pages en Firefox.</td>
+      <td>Todas las pantallas cargan correctamente con estilos aplicados.</td>
+      <td>Hay diferencias menores en el renderizado del gráfico de barras.</td>
+      <td><span class="badge badge-rojo">Fallido</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  <span>SGA – Sistema de Gestión Aduanera · Casos de Prueba SGA-CP-001 v1.0 · ISO/IEC 25000 · ISO/IEC 9126</span>
+  <span>Ingeniería de Software – RQY1102 · DuocUC · 2026</span>
+</div>
+
+</body>
+</html>

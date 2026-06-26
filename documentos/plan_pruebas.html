@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Plan de Pruebas – SGA Aduana</title>
+  <style>
+    @media print { body { margin: 1cm; } .no-print { display: none; } }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; color: #1a1a1a; background: #fff; padding: 2rem; }
+    .header { border-bottom: 3px solid #003366; padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; }
+    .header-left h1 { font-size: 18px; color: #003366; }
+    .header-left h2 { font-size: 13px; color: #555; font-weight: normal; margin-top: 4px; }
+    .header-right { text-align: right; font-size: 11px; color: #555; }
+    .logo { font-size: 2rem; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+    .meta-table td { border: 1px solid #ccc; padding: 7px 10px; }
+    .meta-table td:first-child { background: #003366; color: white; font-weight: 600; width: 30%; }
+    h3 { font-size: 13px; color: #003366; background: #e8f0fe; padding: 6px 10px; margin: 1.2rem 0 0.6rem; border-left: 4px solid #003366; }
+    p, li { line-height: 1.6; margin-bottom: 4px; }
+    ul { padding-left: 1.5rem; }
+    .section { margin-bottom: 1rem; }
+    table.data { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 11.5px; }
+    table.data th { background: #003366; color: white; padding: 7px 10px; text-align: left; }
+    table.data td { border: 1px solid #ccc; padding: 6px 10px; vertical-align: top; }
+    table.data tr:nth-child(even) td { background: #f5f8ff; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; }
+    .badge-verde { background: #d4edda; color: #155724; }
+    .badge-azul { background: #d1ecf1; color: #0c5460; }
+    .badge-naranja { background: #fff3cd; color: #856404; }
+    .footer { border-top: 1px solid #ccc; margin-top: 2rem; padding-top: 0.8rem; font-size: 10px; color: #888; display: flex; justify-content: space-between; }
+    .btn-print { position: fixed; top: 1rem; right: 1rem; background: #003366; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+    .firmas { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+    .firma-box { border-top: 1px solid #333; padding-top: 6px; text-align: center; font-size: 10px; color: #555; }
+  </style>
+</head>
+<body>
+
+<button class="btn-print no-print" onclick="window.print()">Imprimir / PDF</button>
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo">SNA</div>
+    <h1>Plan de Pruebas de Software</h1>
+    <h2>Sistema de Gestión Aduanera (SGA) – Paso Los Libertadores</h2>
+  </div>
+  <div class="header-right">
+    <div><strong>Código:</strong> SGA-PP-001</div>
+    <div><strong>Versión:</strong> 1.0</div>
+    <div><strong>Fecha:</strong> 25/06/2026</div>
+    <div><strong>Estado:</strong> <span class="badge badge-verde">Aprobado</span></div>
+  </div>
+</div>
+
+<!-- METADATOS -->
+<table class="meta-table">
+  <tr><td>Proyecto</td><td>Sistema de Gestión Aduanera – SNA (Paso Los Libertadores)</td></tr>
+  <tr><td>Versión del documento</td><td>1.0</td></tr>
+  <tr><td>Normativa aplicada</td><td>ISO/IEC 25000 (SQuaRE) · ISO/IEC 9126</td></tr>
+  <tr><td>Tipo de prototipo</td><td>Prototipo de alta fidelidad (HTML/CSS – GitHub Pages)</td></tr>
+  <tr><td>Responsables</td><td>[Nombre integrante 1] · [Nombre integrante 2] · [Nombre integrante 3]</td></tr>
+  <tr><td>Fecha de ejecución</td><td>25/06/2026</td></tr>
+</table>
+
+<!-- 1. OBJETIVO -->
+<h3>1. Objetivo del plan de pruebas</h3>
+<div class="section">
+  <p>El presente plan define la estrategia, alcance, recursos y criterios para verificar que el prototipo de alta fidelidad del Sistema de Gestión Aduanera (SGA) cumple con los estándares de calidad establecidos en la norma <strong>ISO/IEC 25000 (SQuaRE)</strong> y los atributos de calidad definidos en <strong>ISO/IEC 9126</strong>, satisfaciendo los requisitos funcionales y no funcionales levantados a partir del caso de estudio del paso fronterizo Los Libertadores.</p>
+</div>
+
+<!-- 2. ALCANCE -->
+<h3>2. Alcance</h3>
+<div class="section">
+  <p><strong>Módulos incluidos en las pruebas:</strong></p>
+  <ul>
+    <li>Módulo de autenticación (Login)</li>
+    <li>Dashboard y panel de control</li>
+    <li>Registro de menores de edad</li>
+    <li>Control de vehículos motorizados</li>
+    <li>Revisión SAG (alimentos, mascotas) y PDI</li>
+    <li>Integración con sistemas de países limítrofes</li>
+    <li>Estadísticas e informes</li>
+    <li>Generación de reportes (PDF/Excel)</li>
+    <li>Gestión de usuarios y perfiles</li>
+  </ul>
+  <p style="margin-top:8px;"><strong>Fuera del alcance:</strong> Pruebas de rendimiento bajo carga real, integración con bases de datos productivas (el prototipo es de alta fidelidad, sin backend real).</p>
+</div>
+
+<!-- 3. NORMATIVA -->
+<h3>3. Normativa aplicada</h3>
+<div class="section">
+  <table class="data">
+    <thead><tr><th>Norma</th><th>Descripción</th><th>Aplicación en este proyecto</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>ISO/IEC 25010</strong><br/>(parte de ISO 25000)</td>
+        <td>Define el modelo de calidad del producto software con 8 características principales.</td>
+        <td>Base para definir qué características de calidad se prueban (usabilidad, funcionalidad, seguridad, etc.)</td>
+      </tr>
+      <tr>
+        <td><strong>ISO/IEC 25040</strong><br/>(parte de ISO 25000)</td>
+        <td>Proceso de evaluación de calidad del software.</td>
+        <td>Guía el proceso: planificación → diseño de casos → ejecución → registro de resultados.</td>
+      </tr>
+      <tr>
+        <td><strong>ISO/IEC 9126</strong></td>
+        <td>Modelo de calidad predecesor al ISO 25010. Define 6 características de calidad.</td>
+        <td>Referencia para los atributos de funcionalidad, confiabilidad, usabilidad, eficiencia, mantenibilidad y portabilidad.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 4. CARACTERÍSTICAS DE CALIDAD -->
+<h3>4. Características de calidad evaluadas (ISO 25010 / ISO 9126)</h3>
+<div class="section">
+  <table class="data">
+    <thead><tr><th>Característica</th><th>Subcaracterística</th><th>Descripción en el contexto SGA</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="2"><strong>Adecuación funcional</strong></td><td>Completitud funcional</td><td>El prototipo cubre todos los requisitos funcionales del caso (menores, vehículos, SAG, PDI, reportes).</td></tr>
+      <tr><td>Corrección funcional</td><td>Los formularios muestran los campos y validaciones correctas según el caso.</td></tr>
+      <tr><td rowspan="2"><strong>Usabilidad</strong></td><td>Inteligibilidad</td><td>El sistema es intuitivo: menús claros, etiquetas descriptivas, flujo lógico.</td></tr>
+      <tr><td>Operabilidad</td><td>El usuario puede completar tareas sin necesidad de ayuda externa.</td></tr>
+      <tr><td><strong>Seguridad</strong></td><td>Control de acceso</td><td>Solo usuarios con cuenta habilitada y perfil correcto acceden a cada módulo.</td></tr>
+      <tr><td><strong>Compatibilidad</strong></td><td>Interoperabilidad</td><td>El prototipo se integra conceptualmente con sistemas de países limítrofes (SINTIA-AR, etc.).</td></tr>
+      <tr><td><strong>Fiabilidad</strong></td><td>Disponibilidad</td><td>El prototipo está disponible en línea vía GitHub Pages sin interrupciones.</td></tr>
+      <tr><td><strong>Portabilidad</strong></td><td>Adaptabilidad</td><td>El sistema funciona en distintos navegadores (Chrome, Firefox, Edge) sin instalación.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 5. TIPOS DE PRUEBA -->
+<h3>5. Tipos de prueba aplicados</h3>
+<div class="section">
+  <table class="data">
+    <thead><tr><th>Tipo</th><th>Objetivo</th><th>Módulos</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Prueba funcional</strong></td><td>Verificar que cada módulo muestra los campos y flujos correctos.</td><td>Todos los módulos</td></tr>
+      <tr><td><strong>Prueba de usabilidad</strong></td><td>Verificar que la navegación es intuitiva y el diseño es claro.</td><td>Login, Dashboard, Menores, Vehículos</td></tr>
+      <tr><td><strong>Prueba de seguridad</strong></td><td>Verificar que el login requiere autenticación y los perfiles limitan el acceso.</td><td>Login, Usuarios</td></tr>
+      <tr><td><strong>Prueba de compatibilidad</strong></td><td>Verificar que el prototipo funciona en distintos navegadores.</td><td>Todas las pantallas</td></tr>
+      <tr><td><strong>Prueba de portabilidad</strong></td><td>Verificar acceso desde distintos dispositivos y sistemas operativos.</td><td>Todas las pantallas</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 6. CRITERIOS -->
+<h3>6. Criterios de aceptación y rechazo</h3>
+<div class="section">
+  <table class="data">
+    <thead><tr><th>Criterio</th><th>Aceptación</th><th>Rechazo</th></tr></thead>
+    <tbody>
+      <tr><td>Cobertura de casos de prueba</td><td>≥ 80% de casos ejecutados</td><td>&lt; 80% de casos ejecutados</td></tr>
+      <tr><td>Tasa de aprobación</td><td>≥ 70% de casos con resultado "Aprobado"</td><td>&lt; 70% aprobados</td></tr>
+      <tr><td>Defectos críticos</td><td>0 defectos bloqueantes</td><td>≥ 1 defecto que impide navegación</td></tr>
+      <tr><td>Requisitos funcionales cubiertos</td><td>100% de los RF del caso están prototipados</td><td>Algún RF del caso no está representado</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 7. RECURSOS -->
+<h3>7. Recursos y responsabilidades</h3>
+<div class="section">
+  <table class="data">
+    <thead><tr><th>Rol</th><th>Responsable</th><th>Actividad</th></tr></thead>
+    <tbody>
+      <tr><td>Líder de pruebas</td><td>[Nombre integrante 1]</td><td>Diseñar casos de prueba, coordinar ejecución</td></tr>
+      <tr><td>Ejecutor de pruebas</td><td>[Nombre integrante 2]</td><td>Ejecutar casos de prueba, registrar resultados</td></tr>
+      <tr><td>Desarrollador prototipo</td><td>[Nombre integrante 3]</td><td>Corregir defectos encontrados, actualizar versión</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FIRMAS -->
+<div class="firmas">
+  <div class="firma-box">
+    <p>[Nombre integrante 1]</p>
+    <p>Líder de pruebas</p>
+  </div>
+  <div class="firma-box">
+    <p>[Nombre integrante 2]</p>
+    <p>Ejecutor</p>
+  </div>
+  <div class="firma-box">
+    <p>[Nombre integrante 3]</p>
+    <p>Desarrollador</p>
+  </div>
+</div>
+
+<div class="footer">
+  <span>SGA – Sistema de Gestión Aduanera · Plan de Pruebas SGA-PP-001 v1.0</span>
+  <span>Ingeniería de Software – RQY1102 · DuocUC · 2026</span>
+</div>
+
+</body>
+</html>
