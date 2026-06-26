@@ -1,207 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SGA – Gestión de Usuarios</title>
-  <link rel="stylesheet" href="../css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SGA - Usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-
-<nav class="navbar">
-  <a href="dashboard.html" class="navbar-brand">
-    <span style="font-size:1.8rem;">SNA</span>
-    <div>
-      <span class="brand-text">Servicio Nacional de Aduanas</span>
-      <span class="brand-sub">Sistema de Gestión Aduanera (SGA) v2.1</span>
+<nav class="navbar navbar-dark navbar-aduana px-3" style="height:56px;">
+    <a class="navbar-brand fw-bold" href="dashboard.html">Servicio Nacional de Aduanas &nbsp;|&nbsp; <small style="font-weight:normal; font-size:13px;">SGA v2.1</small></a>
+    <div class="d-flex align-items-center gap-3">
+        <span class="text-white" style="font-size:14px;">Admin Sistema &mdash; Administrador</span>
+        <a href="../index.html" class="btn btn-outline-light btn-sm">Salir</a>
     </div>
-  </a>
-  <div class="navbar-right">
-    <div class="navbar-user">
-      <div class="avatar">AD</div>
-      <div>
-        <div style="font-size:0.85rem; font-weight:600;">Admin Sistema</div>
-        <div style="font-size:0.72rem; opacity:0.75;">Administrador</div>
-      </div>
-    </div>
-    <a href="../index.html" class="btn-logout">Cerrar sesión</a>
-  </div>
 </nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 sidebar px-0">
+            <div class="section-title">Modulos</div>
+            <nav class="nav flex-column">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="menores.html" class="nav-link ">Registro Menores</a>
+                <a href="vehiculos.html" class="nav-link ">Vehiculos</a>
+                <a href="sag_pdi.html" class="nav-link ">Revision SAG / PDI</a>
+                <a href="integracion.html" class="nav-link ">Integracion Paises</a>
+            </nav>
+            <div class="section-title">Reportes</div>
+            <nav class="nav flex-column">
+                <a href="estadisticas.html" class="nav-link ">Estadisticas</a>
+                <a href="reportes.html" class="nav-link ">Generar Reportes</a>
+            </nav>
+            <div class="section-title">Sistema</div>
+            <nav class="nav flex-column">
+                <a href="usuarios.html" class="nav-link active">Usuarios</a>
+                <a href="../index.html" class="nav-link">Cerrar sesion</a>
+            </nav>
+        </div>
+        <div class="col-10 p-4">
 
-<div class="layout">
-  <aside class="sidebar">
-    <div class="sidebar-section">Módulos</div>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="menores.html">Registro Menores</a>
-    <a href="vehiculos.html">Vehículos</a>
-    <a href="sag_pdi.html">Revisión SAG/PDI</a>
-    <a href="integracion.html">Integración Países</a>
-    <div class="sidebar-section">Reportes</div>
-    <a href="estadisticas.html">Estadísticas</a>
-    <a href="reportes.html">Generar Reportes</a>
-    <div class="sidebar-section">Sistema</div>
-    <a href="usuarios.html" class="active">Usuarios</a>
-    <a href="../index.html">Cerrar sesión</a>
-  </aside>
+            <h4 class="page-title">Gestion de Usuarios</h4>
+            <p class="text-muted" style="font-size:13px; margin-top:-15px;">Administracion de cuentas y permisos de acceso al SGA</p>
 
-  <main class="main">
-    <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> › Gestión de Usuarios</div>
-    <div class="page-header">
-      <h1>Gestión de Usuarios del Sistema</h1>
-      <p>Administración de cuentas, perfiles y permisos de acceso al SGA</p>
+            <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex gap-2">
+                    <input type="text" class="form-control form-control-sm" placeholder="Buscar usuario..." style="width:220px;">
+                    <select class="form-select form-select-sm" style="width:180px;">
+                        <option>Todos los perfiles</option>
+                        <option>Administrador</option>
+                        <option>Funcionario</option>
+                        <option>Inspector SAG</option>
+                        <option>Inspector PDI</option>
+                    </select>
+                </div>
+                <button class="btn btn-aduana btn-sm" data-bs-toggle="modal" data-bs-target="#modalNuevo">+ Nuevo usuario</button>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header card-header-aduana">Usuarios registrados</div>
+                <div class="card-body p-0">
+                    <table class="table table-sm table-hover mb-0">
+                        <thead class="table-light"><tr><th>Nombre</th><th>RUT</th><th>Perfil</th><th>Turno</th><th>Ultimo acceso</th><th>Estado</th><th>Acciones</th></tr></thead>
+                        <tbody>
+                            <tr><td>Juan Martinez</td><td>16.789.432-K</td><td><span class="badge bg-primary">Funcionario</span></td><td>Manana</td><td>25/06 09:00</td><td><span class="badge bg-success">Activo</span></td><td><button class="btn btn-sm btn-outline-secondary">Editar</button></td></tr>
+                            <tr><td>Karla Reyes</td><td>18.234.567-2</td><td><span class="badge bg-success">Inspector SAG</span></td><td>Manana</td><td>25/06 08:45</td><td><span class="badge bg-success">Activo</span></td><td><button class="btn btn-sm btn-outline-secondary">Editar</button></td></tr>
+                            <tr><td>Mario Flores</td><td>14.567.890-5</td><td><span class="badge bg-warning text-dark">Inspector PDI</span></td><td>Tarde</td><td>24/06 22:10</td><td><span class="badge bg-success">Activo</span></td><td><button class="btn btn-sm btn-outline-secondary">Editar</button></td></tr>
+                            <tr><td>Claudia Soto</td><td>19.345.678-1</td><td><span class="badge bg-primary">Funcionario</span></td><td>Manana</td><td>25/06 09:05</td><td><span class="badge bg-success">Activo</span></td><td><button class="btn btn-sm btn-outline-secondary">Editar</button></td></tr>
+                            <tr><td>Pedro Alarcon</td><td>12.890.345-7</td><td><span class="badge bg-secondary">Supervisor</span></td><td>Manana</td><td>23/06 11:30</td><td><span class="badge bg-warning text-dark">Inactivo</span></td><td><button class="btn btn-sm btn-success">Activar</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header card-header-aduana">Permisos por perfil</div>
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0 text-center">
+                        <thead class="table-light"><tr><th class="text-start">Perfil</th><th>Dashboard</th><th>Menores</th><th>Vehiculos</th><th>SAG/PDI</th><th>Estadisticas</th><th>Usuarios</th></tr></thead>
+                        <tbody>
+                            <tr><td class="text-start">Administrador</td><td>Si</td><td>Si</td><td>Si</td><td>Si</td><td>Si</td><td>Si</td></tr>
+                            <tr><td class="text-start">Supervisor</td><td>Si</td><td>Si</td><td>Si</td><td>Si</td><td>Si</td><td>No</td></tr>
+                            <tr><td class="text-start">Funcionario Aduanero</td><td>Si</td><td>Si</td><td>Si</td><td>No</td><td>No</td><td>No</td></tr>
+                            <tr><td class="text-start">Inspector SAG</td><td>Si</td><td>No</td><td>No</td><td>Si (SAG)</td><td>No</td><td>No</td></tr>
+                            <tr><td class="text-start">Inspector PDI</td><td>Si</td><td>No</td><td>No</td><td>Si (PDI)</td><td>No</td><td>No</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalNuevo" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background:#003366; color:white;">
+                            <h5 class="modal-title">Crear nuevo usuario</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <div class="col-12"><label class="form-label">Nombre completo</label><input type="text" class="form-control" placeholder="Nombre y apellidos"></div>
+                                <div class="col-6"><label class="form-label">RUT</label><input type="text" class="form-control" placeholder="12.345.678-9"></div>
+                                <div class="col-6"><label class="form-label">Perfil</label><select class="form-select"><option>Funcionario</option><option>Inspector SAG</option><option>Inspector PDI</option><option>Supervisor</option><option>Administrador</option></select></div>
+                                <div class="col-6"><label class="form-label">Turno</label><select class="form-select"><option>Manana (06:00-14:00)</option><option>Tarde (14:00-22:00)</option><option>Noche (22:00-06:00)</option></select></div>
+                                <div class="col-6"><label class="form-label">Correo institucional</label><input type="email" class="form-control" placeholder="usuario@aduana.cl"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button class="btn btn-aduana" data-bs-dismiss="modal">Crear usuario</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-      <div style="display:flex; gap:8px;">
-        <input type="text" placeholder="Buscar usuario..." style="width:260px;" />
-        <select>
-          <option>Todos los perfiles</option>
-          <option>Administrador</option>
-          <option>Funcionario Aduanero</option>
-          <option>Inspector SAG</option>
-          <option>Inspector PDI</option>
-          <option>Supervisor</option>
-        </select>
-      </div>
-      <button class="btn btn-primary" onclick="toggleModal('modalNuevoUsuario')">Nuevo usuario</button>
-    </div>
-
-    <div class="card">
-      <div class="card-title">Usuarios registrados</div>
-      <table>
-        <thead>
-          <tr><th>Nombre</th><th>RUT</th><th>Perfil</th><th>Turno</th><th>Último acceso</th><th>Estado</th><th>Acciones</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Juan Martínez</strong></td>
-            <td>16.789.432-K</td>
-            <td><span class="badge badge-azul">Funcionario</span></td>
-            <td>Mañana</td>
-            <td>25/06 09:00</td>
-            <td><span class="badge badge-verde">Activo</span></td>
-            <td>
-              <button class="btn btn-secondary btn-sm">Editar</button>
-              <button class="btn btn-secondary btn-sm">Desactivar</button>
-            </td>
-          </tr>
-          <tr>
-            <td><strong>Karla Reyes</strong></td>
-            <td>18.234.567-2</td>
-            <td><span class="badge badge-verde">Inspector SAG</span></td>
-            <td>Mañana</td>
-            <td>25/06 08:45</td>
-            <td><span class="badge badge-verde">Activo</span></td>
-            <td>
-              <button class="btn btn-secondary btn-sm">Editar</button>
-              <button class="btn btn-secondary btn-sm">Desactivar</button>
-            </td>
-          </tr>
-          <tr>
-            <td><strong>Mario Flores</strong></td>
-            <td>14.567.890-5</td>
-            <td><span class="badge badge-amarillo">Inspector PDI</span></td>
-            <td>Tarde</td>
-            <td>24/06 22:10</td>
-            <td><span class="badge badge-verde">Activo</span></td>
-            <td>
-              <button class="btn btn-secondary btn-sm">Editar</button>
-              <button class="btn btn-secondary btn-sm">Desactivar</button>
-            </td>
-          </tr>
-          <tr>
-            <td><strong>Claudia Soto</strong></td>
-            <td>19.345.678-1</td>
-            <td><span class="badge badge-azul">Funcionario</span></td>
-            <td>Mañana</td>
-            <td>25/06 09:05</td>
-            <td><span class="badge badge-verde">Activo</span></td>
-            <td>
-              <button class="btn btn-secondary btn-sm">Editar</button>
-              <button class="btn btn-secondary btn-sm">Desactivar</button>
-            </td>
-          </tr>
-          <tr>
-            <td><strong>Pedro Alarcón</strong></td>
-            <td>12.890.345-7</td>
-            <td><span class="badge badge-gris">Supervisor</span></td>
-            <td>Mañana</td>
-            <td>23/06 11:30</td>
-            <td><span class="badge badge-amarillo">Inactivo</span></td>
-            <td>
-              <button class="btn btn-secondary btn-sm">Editar</button>
-              <button class="btn btn-success btn-sm">Activar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- PERFILES Y PERMISOS -->
-    <div class="card">
-      <div class="card-title">Perfiles y niveles de acceso</div>
-      <table>
-        <thead>
-          <tr><th>Perfil</th><th>Dashboard</th><th>Menores</th><th>Vehículos</th><th>SAG/PDI</th><th>Estadísticas</th><th>Usuarios</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Administrador</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
-          <tr><td>Supervisor</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>No</td></tr>
-          <tr><td>Funcionario Aduanero</td><td>Sí</td><td>Sí</td><td>Sí</td><td>No</td><td>No</td><td>No</td></tr>
-          <tr><td>Inspector SAG</td><td>Sí</td><td>No</td><td>No</td><td>(SAG)</td><td>No</td><td>No</td></tr>
-          <tr><td>Inspector PDI</td><td>Sí</td><td>No</td><td>No</td><td>(PDI)</td><td>No</td><td>No</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
 </div>
-
-<!-- MODAL NUEVO USUARIO -->
-<div class="modal-overlay" id="modalNuevoUsuario">
-  <div class="modal-box" style="max-width:560px;">
-    <div class="modal-header">
-      <div class="modal-title">+ Crear nuevo usuario</div>
-      <button class="modal-close" onclick="toggleModal('modalNuevoUsuario')">×</button>
-    </div>
-    <div class="form-grid">
-      <div class="form-group">
-        <label>Nombre completo</label>
-        <input type="text" placeholder="Nombre y apellidos" />
-      </div>
-      <div class="form-group">
-        <label>RUT</label>
-        <input type="text" placeholder="12.345.678-9" />
-      </div>
-      <div class="form-group">
-        <label>Perfil de acceso</label>
-        <select>
-          <option>Funcionario Aduanero</option>
-          <option>Inspector SAG</option>
-          <option>Inspector PDI</option>
-          <option>Supervisor</option>
-          <option>Administrador</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Turno asignado</label>
-        <select>
-          <option>Mañana (06:00-14:00)</option>
-          <option>Tarde (14:00-22:00)</option>
-          <option>Noche (22:00-06:00)</option>
-        </select>
-      </div>
-      <div class="form-group full">
-        <label>Correo institucional</label>
-        <input type="email" placeholder="usuario@aduana.cl" />
-      </div>
-    </div>
-    <div class="form-actions">
-      <button class="btn btn-secondary" onclick="toggleModal('modalNuevoUsuario')">Cancelar</button>
-      <button class="btn btn-primary" onclick="toggleModal('modalNuevoUsuario')">Crear usuario</button>
-    </div>
-  </div>
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../js/nav.js"></script>
 </body>
 </html>

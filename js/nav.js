@@ -1,11 +1,10 @@
-function toggleModal(id) {
-  const m = document.getElementById(id);
-  if (m) m.classList.toggle('show');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const path = window.location.pathname.split('/').pop();
-  document.querySelectorAll('.sidebar a').forEach(a => {
-    if (a.getAttribute('href') === path) a.classList.add('active');
-  });
+// marca el link activo en el sidebar segun la pagina actual
+document.addEventListener('DOMContentLoaded', function() {
+    var path = window.location.pathname.split('/').pop();
+    var links = document.querySelectorAll('.sidebar .nav-link');
+    links.forEach(function(link) {
+        if (link.getAttribute('href') === path) {
+            link.classList.add('active');
+        }
+    });
 });

@@ -1,236 +1,106 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SGA – Dashboard</title>
-  <link rel="stylesheet" href="../css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SGA - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <a href="dashboard.html" class="navbar-brand">
-    <span style="font-size:1.8rem;">SNA</span>
-    <div>
-      <span class="brand-text">Servicio Nacional de Aduanas</span>
-      <span class="brand-sub">Sistema de Gestión Aduanera (SGA) v2.1</span>
+<nav class="navbar navbar-dark navbar-aduana px-3" style="height:56px;">
+    <a class="navbar-brand fw-bold" href="dashboard.html">
+        Servicio Nacional de Aduanas &nbsp;|&nbsp; <small style="font-weight:normal; font-size:13px;">SGA v2.1</small>
+    </a>
+    <div class="d-flex align-items-center gap-3">
+        <span class="text-white" style="font-size:14px;">Juan Martinez &mdash; Funcionario</span>
+        <a href="../index.html" class="btn btn-outline-light btn-sm">Salir</a>
     </div>
-  </a>
-  <div class="navbar-right">
-    <div class="navbar-user">
-      <div class="avatar">JM</div>
-      <div>
-        <div style="font-size:0.85rem; font-weight:600;">Juan Martínez</div>
-        <div style="font-size:0.72rem; opacity:0.75;">Funcionario Aduanero</div>
-      </div>
-    </div>
-    <a href="../index.html" class="btn-logout">Cerrar sesión</a>
-  </div>
 </nav>
 
-<div class="layout">
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-section">Módulos</div>
-    <a href="dashboard.html" class="active">Dashboard</a>
-    <a href="menores.html">Registro Menores</a>
-    <a href="vehiculos.html">Vehículos</a>
-    <a href="sag_pdi.html">Revisión SAG/PDI</a>
-    <a href="integracion.html">Integración Países</a>
-    <div class="sidebar-section">Reportes</div>
-    <a href="estadisticas.html">Estadísticas</a>
-    <a href="reportes.html">Generar Reportes</a>
-    <div class="sidebar-section">Sistema</div>
-    <a href="usuarios.html">Usuarios</a>
-    <a href="../index.html">Cerrar sesión</a>
-  </aside>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 sidebar px-0">
+            <div class="section-title">Modulos</div>
+            <nav class="nav flex-column">
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                <a href="menores.html" class="nav-link">Registro Menores</a>
+                <a href="vehiculos.html" class="nav-link">Vehiculos</a>
+                <a href="sag_pdi.html" class="nav-link">Revision SAG / PDI</a>
+                <a href="integracion.html" class="nav-link">Integracion Paises</a>
+            </nav>
+            <div class="section-title">Reportes</div>
+            <nav class="nav flex-column">
+                <a href="estadisticas.html" class="nav-link">Estadisticas</a>
+                <a href="reportes.html" class="nav-link">Generar Reportes</a>
+            </nav>
+            <div class="section-title">Sistema</div>
+            <nav class="nav flex-column">
+                <a href="usuarios.html" class="nav-link">Usuarios</a>
+                <a href="../index.html" class="nav-link">Cerrar sesion</a>
+            </nav>
+        </div>
 
-  <!-- MAIN -->
-  <main class="main">
-    <div class="page-header">
-      <h1>Dashboard Principal</h1>
-      <p>Resumen del estado operativo del paso fronterizo Los Libertadores — 25 jun 2026, 09:14 hrs</p>
-    </div>
+        <div class="col-10 p-4">
+            <h4 class="page-title">Dashboard Principal</h4>
+            <p class="text-muted" style="font-size:13px; margin-top:-15px; margin-bottom:20px;">Paso Los Libertadores &mdash; 25 jun 2026, 09:14 hrs</p>
 
-    <div class="alert alert-warning">
-      <strong>Alerta:</strong> Flujo de vehículos sobre el 80% de capacidad. Se estima espera de 3 hrs 20 min en el acceso norte.
-    </div>
+            <div class="alert alert-warning"><strong>Aviso:</strong> El flujo de vehiculos supera el 80% de capacidad. Tiempo estimado de espera: 3 hrs 20 min en acceso norte.</div>
 
-    <!-- STATS -->
-    <div class="stats-grid">
-      <div class="stat-card azul">
-        <div class="stat-label">Personas procesadas hoy</div>
-        <div class="stat-value">1.847</div>
-        <div class="stat-sub">↑ 12% respecto a ayer</div>
-      </div>
-      <div class="stat-card verde">
-        <div class="stat-label">Documentos aprobados</div>
-        <div class="stat-value">1.702</div>
-        <div class="stat-sub">92.1% tasa de aprobación</div>
-      </div>
-      <div class="stat-card naranja">
-        <div class="stat-label">Documentos pendientes</div>
-        <div class="stat-value">98</div>
-        <div class="stat-sub">Requieren revisión manual</div>
-      </div>
-      <div class="stat-card rojo">
-        <div class="stat-label">Rechazados</div>
-        <div class="stat-value">47</div>
-        <div class="stat-sub">Documentación incompleta</div>
-      </div>
-    </div>
+            <div class="row mb-4">
+                <div class="col-3"><div class="card stat-card"><div class="card-body"><p class="text-muted mb-1" style="font-size:12px;">PERSONAS HOY</p><div class="stat-number">1.847</div><small class="text-muted">+12% respecto a ayer</small></div></div></div>
+                <div class="col-3"><div class="card stat-card verde"><div class="card-body"><p class="text-muted mb-1" style="font-size:12px;">APROBADOS</p><div class="stat-number">1.702</div><small class="text-muted">92.1% tasa de aprobacion</small></div></div></div>
+                <div class="col-3"><div class="card stat-card naranja"><div class="card-body"><p class="text-muted mb-1" style="font-size:12px;">PENDIENTES</p><div class="stat-number">98</div><small class="text-muted">Requieren revision</small></div></div></div>
+                <div class="col-3"><div class="card stat-card rojo"><div class="card-body"><p class="text-muted mb-1" style="font-size:12px;">RECHAZADOS</p><div class="stat-number">47</div><small class="text-muted">Documentacion incompleta</small></div></div></div>
+            </div>
 
-    <!-- ESTADO FLUJO -->
-    <div class="card">
-      <div class="card-title">Estado del flujo en tiempo real</div>
-      <table>
-        <thead>
-          <tr>
-            <th>Punto de control</th>
-            <th>En cola</th>
-            <th>Procesando</th>
-            <th>Tiempo estimado</th>
-            <th>Capacidad</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Migraciones (entrada)</td>
-            <td>214</td>
-            <td>8 funcionarios</td>
-            <td>~45 min</td>
-            <td>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar-fill naranja" style="width:72%"></div>
-              </div>
-              72%
-            </td>
-            <td><span class="badge badge-amarillo">Demora moderada</span></td>
-          </tr>
-          <tr>
-            <td>SNA Revisión Aduanera</td>
-            <td>89</td>
-            <td>6 funcionarios</td>
-            <td>~20 min</td>
-            <td>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar-fill" style="width:45%"></div>
-              </div>
-              45%
-            </td>
-            <td><span class="badge badge-verde">Flujo normal</span></td>
-          </tr>
-          <tr>
-            <td>Revisión SAG</td>
-            <td>156</td>
-            <td>4 inspectores</td>
-            <td>~1h 10min</td>
-            <td>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar-fill rojo" style="width:88%"></div>
-              </div>
-              88%
-            </td>
-            <td><span class="badge badge-rojo">Alta demanda</span></td>
-          </tr>
-          <tr>
-            <td>Revisión PDI</td>
-            <td>42</td>
-            <td>3 inspectores</td>
-            <td>~15 min</td>
-            <td>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar-fill" style="width:35%"></div>
-              </div>
-              35%
-            </td>
-            <td><span class="badge badge-verde">Flujo normal</span></td>
-          </tr>
-          <tr>
-            <td>Control Vehículos</td>
-            <td>310</td>
-            <td>5 carriles activos</td>
-            <td>~2h 30min</td>
-            <td>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar-fill rojo" style="width:82%"></div>
-              </div>
-              82%
-            </td>
-            <td><span class="badge badge-rojo">Alta demanda</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            <div class="card mb-4">
+                <div class="card-header card-header-aduana">Estado del flujo en tiempo real</div>
+                <div class="card-body p-0">
+                    <table class="table table-hover table-sm mb-0">
+                        <thead class="table-light"><tr><th>Punto de control</th><th>En cola</th><th>Funcionarios</th><th>Tiempo estimado</th><th>Capacidad</th><th>Estado</th></tr></thead>
+                        <tbody>
+                            <tr><td>Migraciones (entrada)</td><td>214</td><td>8</td><td>~45 min</td><td><div class="progress" style="height:8px;"><div class="progress-bar bg-warning" style="width:72%"></div></div><small>72%</small></td><td><span class="badge bg-warning text-dark">Demora moderada</span></td></tr>
+                            <tr><td>Revision Aduanera</td><td>89</td><td>6</td><td>~20 min</td><td><div class="progress" style="height:8px;"><div class="progress-bar bg-success" style="width:45%"></div></div><small>45%</small></td><td><span class="badge bg-success">Flujo normal</span></td></tr>
+                            <tr><td>Revision SAG</td><td>156</td><td>4</td><td>~1h 10min</td><td><div class="progress" style="height:8px;"><div class="progress-bar bg-danger" style="width:88%"></div></div><small>88%</small></td><td><span class="badge bg-danger">Alta demanda</span></td></tr>
+                            <tr><td>Revision PDI</td><td>42</td><td>3</td><td>~15 min</td><td><div class="progress" style="height:8px;"><div class="progress-bar bg-success" style="width:35%"></div></div><small>35%</small></td><td><span class="badge bg-success">Flujo normal</span></td></tr>
+                            <tr><td>Control Vehiculos</td><td>310</td><td>5 carriles</td><td>~2h 30min</td><td><div class="progress" style="height:8px;"><div class="progress-bar bg-danger" style="width:82%"></div></div><small>82%</small></td><td><span class="badge bg-danger">Alta demanda</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-    <!-- ACCIONES RÁPIDAS -->
-    <div class="card">
-      <div class="card-title">Acciones rápidas</div>
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <a href="menores.html" class="btn btn-primary">Nuevo registro de menor</a>
-        <a href="vehiculos.html" class="btn btn-primary">Registrar vehículo</a>
-        <a href="sag_pdi.html" class="btn btn-secondary">Revisión SAG/PDI</a>
-        <a href="reportes.html" class="btn btn-secondary">Generar reporte</a>
-      </div>
-    </div>
+            <div class="card mb-4">
+                <div class="card-header card-header-aduana">Acciones rapidas</div>
+                <div class="card-body">
+                    <a href="menores.html" class="btn btn-aduana me-2">Nuevo registro de menor</a>
+                    <a href="vehiculos.html" class="btn btn-aduana me-2">Registrar vehiculo</a>
+                    <a href="sag_pdi.html" class="btn btn-outline-secondary me-2">Revision SAG/PDI</a>
+                    <a href="reportes.html" class="btn btn-outline-secondary">Generar reporte</a>
+                </div>
+            </div>
 
-    <!-- ÚLTIMAS ACTIVIDADES -->
-    <div class="card">
-      <div class="card-title">Últimas actividades</div>
-      <table>
-        <thead>
-          <tr>
-            <th>Hora</th>
-            <th>Tipo</th>
-            <th>Detalle</th>
-            <th>Funcionario</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>09:12</td>
-            <td>Vehículo</td>
-            <td>Placa AR-XYZ-123 – Admisión temporal</td>
-            <td>J. Martínez</td>
-            <td><span class="badge badge-verde">Aprobado</span></td>
-          </tr>
-          <tr>
-            <td>09:08</td>
-            <td>Menor de edad</td>
-            <td>Autorización notarial verificada</td>
-            <td>C. Soto</td>
-            <td><span class="badge badge-verde">Aprobado</span></td>
-          </tr>
-          <tr>
-            <td>09:01</td>
-            <td>SAG</td>
-            <td>Declaración alimentos – productos vegetales</td>
-            <td>K. Reyes</td>
-            <td><span class="badge badge-amarillo">En revisión</span></td>
-          </tr>
-          <tr>
-            <td>08:55</td>
-            <td>Documentos</td>
-            <td>Pasaporte vencido – Pasajero rechazado</td>
-            <td>J. Martínez</td>
-            <td><span class="badge badge-rojo">Rechazado</span></td>
-          </tr>
-          <tr>
-            <td>08:47</td>
-            <td>PDI</td>
-            <td>Verificación identidad – sin observaciones</td>
-            <td>M. Flores</td>
-            <td><span class="badge badge-verde">Aprobado</span></td>
-          </tr>
-        </tbody>
-      </table>
+            <div class="card">
+                <div class="card-header card-header-aduana">Ultimas actividades</div>
+                <div class="card-body p-0">
+                    <table class="table table-sm table-hover mb-0">
+                        <thead class="table-light"><tr><th>Hora</th><th>Tipo</th><th>Detalle</th><th>Funcionario</th><th>Estado</th></tr></thead>
+                        <tbody>
+                            <tr><td>09:12</td><td>Vehiculo</td><td>Placa JKHM-34 - Admision temporal</td><td>J. Martinez</td><td><span class="badge bg-success">Aprobado</span></td></tr>
+                            <tr><td>09:08</td><td>Menor de edad</td><td>Autorizacion notarial verificada</td><td>C. Soto</td><td><span class="badge bg-success">Aprobado</span></td></tr>
+                            <tr><td>09:01</td><td>SAG</td><td>Declaracion alimentos - productos vegetales</td><td>K. Reyes</td><td><span class="badge bg-warning text-dark">En revision</span></td></tr>
+                            <tr><td>08:55</td><td>Documentos</td><td>Pasaporte vencido - Pasajero rechazado</td><td>J. Martinez</td><td><span class="badge bg-danger">Rechazado</span></td></tr>
+                            <tr><td>08:47</td><td>PDI</td><td>Verificacion identidad - sin observaciones</td><td>M. Flores</td><td><span class="badge bg-success">Aprobado</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-  </main>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../js/nav.js"></script>
 </body>
 </html>
